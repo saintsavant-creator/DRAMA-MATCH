@@ -1,0 +1,27 @@
+{
+  "week": "2026-04-14",
+  "updatedLabel": "Week of April 14, 2026",
+  "headline": "If you couldn't stop watching this...",
+  "subheadline": "...you're not ready for what comes next.",
+  "western": {
+    "id": "adolescence",
+    "title": "Adolescence",
+    "year": "2025",
+    "type": "Western Series",
+    "streaming": "netflix",
+    "genres": ["Psychological Drama", "Crime", "Family"],
+    "vibes": ["Haunting", "Intense", "Thought-Provoking"]
+  },
+  "drama": {
+    "id": "sky-castle",
+    "title": "SKY Castle",
+    "year": "2018–2019",
+    "type": "K-Drama",
+    "streaming": "netflix",
+    "genres": ["Family Drama", "Dark Satire", "Thriller"],
+    "vibes": ["Addictive", "Shocking", "Darkly Funny"]
+  },
+  "matchScore": 93,
+  "whyMatch": "Both demolish the myth of the perfect family from the inside out. <strong>Adolescence</strong> asks how a child becomes capable of violence — <strong>SKY Castle</strong> asks how parents become capable of anything to guarantee their child's success. Same obsessive need to control outcomes. Same devastating unraveling. Different continents, identical wreckage.",
+  "matchLabel": "Same DNA. Different language."
+}

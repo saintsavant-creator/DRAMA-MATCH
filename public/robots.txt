@@ -1,0 +1,86 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://dramamatch.app/sitemap.xml
+
+# AI/LLM Discovery
+# Machine-readable catalog index for ChatGPT, Perplexity, Claude, Gemini, Bing Copilot, etc.
+LLMs-txt: https://dramamatch.app/llms.txt
+
+# API endpoints — crawlers don't need these
+Disallow: /api/
+Disallow: /health
+
+# --- AI Crawlers (explicitly allowed) ---
+
+# OpenAI GPTBot
+User-agent: GPTBot
+Allow: /
+
+# OpenAI ChatGPT-User (browsing plugin)
+User-agent: ChatGPT-User
+Allow: /
+
+# OpenAI OAI-SearchBot
+User-agent: OAI-SearchBot
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+# Anthropic ClaudeBot
+User-agent: ClaudeBot
+Allow: /
+
+# Claude (API access)
+User-agent: Claude-Web
+Allow: /
+
+# Google Gemini / Bard / AI Overviews
+User-agent: Google-Extended
+Allow: /
+
+# Google Googlebot (regular + news)
+User-agent: Googlebot
+Allow: /
+
+# Microsoft Copilot / Bing
+User-agent: Bingbot
+Allow: /
+
+# You.com YouBot
+User-agent: YouBot
+Allow: /
+
+# Meta AI
+User-agent: FacebookBot
+Allow: /
+
+# Apple Applebot (used for Siri suggestions)
+User-agent: Applebot
+Allow: /
+
+# Cohere AI
+User-agent: cohere-ai
+Allow: /
+
+# AI21 Labs
+User-agent: AI2Bot
+Allow: /
+
+# Common AI training crawlers
+User-agent: CCBot
+Allow: /
+
+User-agent: omgili
+Allow: /
+
+# Diffbot (AI knowledge graph)
+User-agent: Diffbot
+Allow: /
+
+# Bytespider (TikTok AI)
+User-agent: Bytespider
+Allow: /

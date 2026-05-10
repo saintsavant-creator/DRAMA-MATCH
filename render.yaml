@@ -1,0 +1,16 @@
+services:
+  - type: web
+    runtime: node
+    name: dramamatch
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false
+      - key: ADMIN_TOKEN
+        generateValue: true
+      - key: BASE_URL
+        sync: false

@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Add — DramaMatch</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="alternate icon" href="/favicon.ico">
+    <meta name="description" content="Quickly mark Asian dramas, anime, and movies as watched or want to watch. Full catalog — no images, fast scanning.">
+    <meta name="robots" content="noindex, nofollow">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet"></noscript>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg:       #0a0a0f;
+            --bg-card:  #13131a;
+            --bg-row:   #0e0e15;
+            --bg-hover: #16161f;
+            --coral:    #e8614d;
+            --coral-dim:rgba(232,97,77,0.15);
+            --green:    #4ade80;
+            --green-dim:rgba(74,222,128,0.12);
+            --gold:     #d4a853;
+            --t1:       #f0ece4;
+            --t2:       #9a9690;
+            --t3:       #5a5750;
+            --border:   #1f1f2a;
+            --border2:  #2a2a35;
+        }
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--t1);
+            min-height: 100vh;
+            font-size: 14px;
+        }
+
+        /* NAV */
+        .site-nav {
+            position: sticky; top: 0; z-index: 200;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 12px 20px;
+            background: rgba(10,10,15,0.95);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
+        .nav-logo { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--t1); text-decoration: none; }
+        .nav-logo span { color: var(--coral); }
+        .nav-links { display: flex; align-items: center; gap: 18px; font-size: 0.82rem; }
+        .nav-links a { color: var(--t2); text-decoration: none; transition: color 0.15s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--t1); }
+        .nav-watchlist { color: var(--coral) !important; display: inline-flex; align-items: center; gap: 0.3rem; }
+        .wl-nav-badge {
+            background: var(--coral); color: #fff; font-size: 0.58rem; font-weight: 700;
+            min-width: 14px; height: 14px; border-radius: 7px; display: none;
+            align-items: center; justify-content: center; padding: 0 3px;
+        }
+        .wl-nav-badge.visible { display: inline-flex; }
+
+        /* CAT TABS */
+        .cat-tabs-wrap {
+            position: sticky; top: 49px; z-index: 150;
+            background: rgba(10,10,15,0.97);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(8px);
+            padding: 0 20px;
+        }
+        .cat-tabs {
+            display: flex; gap: 0; overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        .cat-tabs::-webkit-scrollbar { display: none; }
+        .cat-tab {
+            flex-shrink: 0;
+            padding: 9px 14px;
+            font-size: 0.78rem; font-weight: 600;
+            color: var(--t3); border: none; background: transparent;
+            cursor: pointer; transition: color 0.15s;
+            border-bottom: 2px solid transparent;
+            white-space: nowrap;
+        }
+        .cat-tab:hover { color: var(--t2); }
+        .cat-tab.active { color: var(--coral); border-bottom-color: var(--coral); }
+        .cat-tab .tab-count {
+            font-size: 0.65rem; font-weight: 500;
+            color: var(--t3); margin-left: 4px;
+        }
+
+        /* HEADER */
+        .page-header {
+            padding: 22px 20px 12px;
+            display: flex; align-items: flex-start; justify-content: space-between;
+            gap: 1rem; flex-wrap: wrap;
+        }
+        .page-header-left h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.4rem; font-weight: 700; letter-spacing: -0.02em;
+            margin-bottom: 3px;
+        }
+        .page-header-left h1 span {
+            background: linear-gradient(135deg, var(--coral) 0%, #ff7b6a 60%, var(--gold) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .page-header-left p { color: var(--t2); font-size: 0.82rem; }
+        .header-stats {
+            display: flex; gap: 12px; flex-shrink: 0; align-items: center;
+        }
+        .header-stat {
+            text-align: right;
+        }
+        .header-stat .stat-num { font-size: 1.1rem; font-weight: 700; color: var(--coral); line-height: 1; }
+        .header-stat .stat-lbl { font-size: 0.68rem; color: var(--t3); }
+        .watchlist-link {
+            display: inline-flex; align-items: center; gap: 0.3rem;
+            color: var(--coral); text-decoration: none; font-size: 0.8rem; font-weight: 600;
+            padding: 6px 12px; border: 1px solid rgba(232,97,77,0.3); border-radius: 6px;
+            transition: background 0.15s;
+        }
+        .watchlist-link:hover { background: var(--coral-dim); }
+
+        /* FILTER BAR */
+        .filter-bar {
+            padding: 8px 20px 10px;
+            display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+        }
+        .filter-search {
+            flex: 1; min-width: 160px; max-width: 340px;
+            padding: 6px 10px;
+            background: var(--bg-card); border: 1px solid var(--border2);
+            border-radius: 6px; color: var(--t1); font-size: 0.82rem;
+            font-family: inherit;
+            outline: none; transition: border-color 0.15s;
+        }
+        .filter-search::placeholder { color: var(--t3); }
+        .filter-search:focus { border-color: rgba(232,97,77,0.4); }
+        .filter-btns { display: flex; gap: 6px; }
+        .filter-btn {
+            padding: 5px 10px; border-radius: 5px;
+            border: 1px solid var(--border2); background: transparent;
+            color: var(--t2); font-size: 0.75rem; font-weight: 600;
+            cursor: pointer; transition: all 0.15s; font-family: inherit;
+            white-space: nowrap;
+        }
+        .filter-btn:hover { border-color: var(--border2); color: var(--t1); }
+        .filter-btn.active { background: var(--coral-dim); border-color: rgba(232,97,77,0.4); color: var(--coral); }
+        .filter-btn.active-green { background: var(--green-dim); border-color: rgba(74,222,128,0.3); color: var(--green); }
+
+        /* MAIN CONTENT */
+        .main { padding: 0 20px 60px; }
+
+        /* CATEGORY SECTION */
+        .cat-section { margin-bottom: 4px; }
+        .cat-heading {
+            position: sticky; top: 96px; z-index: 100;
+            display: flex; align-items: center; gap: 10px;
+            padding: 8px 0 6px;
+            background: rgba(10,10,15,0.97);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 2px;
+        }
+        .cat-heading-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.92rem; font-weight: 700;
+        }
+        .cat-heading-count {
+            font-size: 0.72rem; color: var(--t3);
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 8px; padding: 1px 7px;
+        }
+
+        /* TITLE ROWS */
+        .title-list { display: flex; flex-direction: column; gap: 1px; margin-bottom: 16px; }
+
+        .title-row {
+            display: grid;
+            grid-template-columns: 18px 1fr auto auto;
+            align-items: center;
+            gap: 8px;
+            padding: 5px 6px;
+            border-radius: 5px;
+            transition: background 0.1s;
+            cursor: default;
+        }
+        .title-row:hover { background: var(--bg-hover); }
+        .title-row.st-watched { background: rgba(74,222,128,0.04); }
+        .title-row.st-watched:hover { background: rgba(74,222,128,0.08); }
+        .title-row.st-want { background: rgba(232,97,77,0.04); }
+        .title-row.st-want:hover { background: rgba(232,97,77,0.08); }
+        .title-row.hidden-row { display: none; }
+
+        /* Status dot */
+        .row-dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: var(--border2); flex-shrink: 0;
+            transition: background 0.15s;
+        }
+        .title-row.st-watched .row-dot { background: var(--green); }
+        .title-row.st-want .row-dot { background: var(--coral); }
+
+        /* Title + meta */
+        .row-info { min-width: 0; }
+        .row-title {
+            font-size: 0.855rem; font-weight: 600; color: var(--t1);
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+            line-height: 1.3;
+        }
+        .title-row.st-watched .row-title { color: var(--green); }
+        .title-row.st-want .row-title { color: var(--coral); }
+        .row-meta {
+            display: flex; align-items: center; gap: 5px;
+            margin-top: 1px; flex-wrap: wrap;
+        }
+        .row-year { font-size: 0.7rem; color: var(--t3); flex-shrink: 0; }
+        .row-ep { font-size: 0.7rem; color: var(--t3); flex-shrink: 0; }
+        .row-genre {
+            font-size: 0.62rem; padding: 1px 5px; border-radius: 3px;
+            background: rgba(96,165,250,0.08); border: 1px solid rgba(96,165,250,0.15);
+            color: #608dce; white-space: nowrap;
+        }
+
+        /* Toggle buttons */
+        .row-btns { display: flex; gap: 4px; flex-shrink: 0; }
+        .row-btn {
+            padding: 3px 8px;
+            border-radius: 4px; border: 1px solid var(--border2);
+            background: transparent; color: var(--t3);
+            font-size: 0.7rem; font-weight: 700;
+            cursor: pointer; transition: all 0.12s;
+            font-family: inherit; white-space: nowrap;
+        }
+        .row-btn:hover { border-color: var(--border2); color: var(--t2); }
+        .row-btn.want-active { background: var(--coral-dim); border-color: rgba(232,97,77,0.5); color: var(--coral); }
+        .row-btn.seen-active { background: var(--green-dim); border-color: rgba(74,222,128,0.35); color: var(--green); }
+
+        /* EMPTY STATE */
+        .empty-state {
+            padding: 40px 20px; text-align: center; color: var(--t3); font-size: 0.85rem;
+        }
+
+        /* LOADING */
+        .loading-wrap { padding: 40px 20px; text-align: center; color: var(--t3); font-size: 0.85rem; }
+        .loading-dots span { animation: blink 1.4s infinite; }
+        .loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+        .loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes blink { 0%,80%,100%{opacity:0.3} 40%{opacity:1} }
+
+        /* FOOTER */
+        footer { padding: 20px; text-align: center; border-top: 1px solid var(--border); color: var(--t3); font-size: 0.75rem; }
+        footer a { color: var(--t3); text-decoration: none; }
+        footer a:hover { color: var(--t2); }
+
+        /* MOBILE */
+        @media (max-width: 520px) {
+            .site-nav { padding: 10px 14px; }
+            .nav-links { gap: 10px; font-size: 0.78rem; }
+            .nav-links .hide-mob { display: none; }
+            .page-header { padding: 16px 14px 8px; }
+            .filter-bar { padding: 6px 14px 8px; }
+            .main { padding: 0 14px 50px; }
+            .cat-tabs-wrap { padding: 0 14px; }
+            .title-row { gap: 6px; padding: 5px 4px; }
+            .row-title { font-size: 0.82rem; }
+            .row-btn { padding: 3px 6px; font-size: 0.68rem; }
+            .cat-heading { top: 94px; }
+        }
+    </style>
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1686999645661477');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1686999645661477&ev=PageView&noscript=1"
+    /></noscript>
+</head>
+<body>
+
+<nav class="site-nav">
+    <a href="/" class="nav-logo">Drama<span>Match</span></a>
+    <div class="nav-links">
+        <a href="/watchlist" class="nav-watchlist">♥ My List <span class="wl-nav-badge" id="nav-wl-badge"></span></a>
+        <a href="/popular" class="active">⚡ Quick Add</a>
+        <a href="/mood/epic-romance" class="hide-mob">Browse Moods</a>
+        <a href="/">Find a Match</a>
+    </div>
+</nav>
+
+<!-- Category tab bar — populated by JS -->
+<div class="cat-tabs-wrap">
+    <div class="cat-tabs" id="cat-tabs"></div>
+</div>
+
+<div class="page-header">
+    <div class="page-header-left">
+        <h1>⚡ <span>Quick Add</span></h1>
+        <p>Full Asian catalog — tap Want or Seen to build your list fast.</p>
+    </div>
+    <div class="header-stats" id="header-stats">
+        <a href="/watchlist" class="watchlist-link">♥ My List</a>
+    </div>
+</div>
+
+<div class="filter-bar">
+    <input type="search" class="filter-search" id="filter-search" placeholder="Search titles…" autocomplete="off" autocorrect="off" spellcheck="false">
+    <div class="filter-btns">
+        <button class="filter-btn" id="btn-filter-all" onclick="setFilter('all')">All</button>
+        <button class="filter-btn" id="btn-filter-unseen" onclick="setFilter('unseen')">Unseen</button>
+        <button class="filter-btn active-green" id="btn-filter-watched" onclick="setFilter('watched')">✓ Watched</button>
+        <button class="filter-btn active" id="btn-filter-want" onclick="setFilter('want')">📋 Want</button>
+    </div>
+</div>
+
+<div class="main" id="main-content">
+    <div class="loading-wrap" id="loading-state">
+        Loading catalog<span class="loading-dots"><span>.</span><span>.</span><span>.</span></span>
+    </div>
+</div>
+
+<footer>
+    <p><a href="/">← Find a Match</a> &nbsp;·&nbsp; <a href="/watchlist">My Watchlist</a> &nbsp;·&nbsp; <a href="/about">About</a></p>
+</footer>
+
+<script>
+(function() {
+    'use strict';
+    var WL_KEY = 'dm_watchlist';
+    var allCategories = [];
+    var activeFilter = 'all'; // 'all' | 'unseen' | 'watched' | 'want'
+    var searchQuery = '';
+
+    /* ── LocalStorage helpers ── */
+    function wlLoad() {
+        try { return JSON.parse(localStorage.getItem(WL_KEY) || '[]'); } catch(e) { return []; }
+    }
+    function wlSave(list) {
+        try { localStorage.setItem(WL_KEY, JSON.stringify(list)); } catch(e) {}
+    }
+    function getStatus(showId) {
+        var item = wlLoad().find(function(x) { return x.id === showId; });
+        return item ? (item.status || 'want_to_watch') : null;
+    }
+
+    /* ── Nav badge ── */
+    function updateNavBadge() {
+        var count = wlLoad().length;
+        var badge = document.getElementById('nav-wl-badge');
+        if (!badge) return;
+        badge.textContent = count > 0 ? count : '';
+        if (count > 0) badge.classList.add('visible');
+        else badge.classList.remove('visible');
+    }
+
+    /* ── Header stats ── */
+    function updateHeaderStats() {
+        var list = wlLoad();
+        var watched = list.filter(function(x){ return x.status === 'watched'; }).length;
+        var want = list.filter(function(x){ return x.status === 'want_to_watch'; }).length;
+        var el = document.getElementById('header-stats');
+        if (!el) return;
+        var statsHtml = '';
+        if (watched > 0) {
+            statsHtml += '<div class="header-stat"><div class="stat-num" style="color:var(--green)">' + watched + '</div><div class="stat-lbl">watched</div></div>';
+        }
+        if (want > 0) {
+            statsHtml += '<div class="header-stat"><div class="stat-num">' + want + '</div><div class="stat-lbl">want to watch</div></div>';
+        }
+        statsHtml += '<a href="/watchlist" class="watchlist-link">♥ My List</a>';
+        el.innerHTML = statsHtml;
+    }
+
+    /* ── Toggle ── */
+    window.rowToggle = function(showId, newStatus, showData) {
+        var list = wlLoad();
+        var idx = list.findIndex(function(x) { return x.id === showId; });
+        if (idx === -1) {
+            list.push(Object.assign({}, showData, { savedAt: new Date().toISOString(), status: newStatus }));
+            wlSave(list);
+        } else if (list[idx].status === newStatus) {
+            list.splice(idx, 1);
+            wlSave(list);
+        } else {
+            list[idx].status = newStatus;
+            wlSave(list);
+        }
+        updateRow(showId);
+        updateNavBadge();
+        updateHeaderStats();
+        // If filter is active, may need to hide/show rows
+        if (activeFilter !== 'all') applyFilterToRow(showId);
+    };
+
+    function updateRow(showId) {
+        var row = document.querySelector('[data-sid="' + showId + '"]');
+        if (!row) return;
+        var st = getStatus(showId);
+        row.className = 'title-row' + (st === 'watched' ? ' st-watched' : st === 'want_to_watch' ? ' st-want' : '');
+        var wantBtn = row.querySelector('[data-rbtn="want"]');
+        var seenBtn = row.querySelector('[data-rbtn="seen"]');
+        if (wantBtn) wantBtn.className = 'row-btn' + (st === 'want_to_watch' ? ' want-active' : '');
+        if (seenBtn) seenBtn.className = 'row-btn' + (st === 'watched' ? ' seen-active' : '');
+    }
+
+    function applyFilterToRow(showId) {
+        var row = document.querySelector('[data-sid="' + showId + '"]');
+        if (!row) return;
+        var st = getStatus(showId);
+        var show = activeFilter === 'all'     ? true
+                 : activeFilter === 'unseen'  ? !st
+                 : activeFilter === 'watched' ? (st === 'watched')
+                 : activeFilter === 'want'    ? (st === 'want_to_watch')
+                 : true;
+        if (show) row.classList.remove('hidden-row');
+        else row.classList.add('hidden-row');
+    }
+
+    /* ── Build a row HTML ── */
+    function escHtml(s) {
+        return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    function buildRow(show) {
+        var st = getStatus(show.id);
+        var rowCls = 'title-row' + (st === 'watched' ? ' st-watched' : st === 'want_to_watch' ? ' st-want' : '');
+
+        var meta = '';
+        if (show.year) meta += '<span class="row-year">' + escHtml(show.year) + '</span>';
+        if (show.episodes) meta += '<span class="row-ep">' + escHtml(show.episodes) + ' ep</span>';
+        else if (show.runtime) meta += '<span class="row-ep">' + escHtml(show.runtime) + ' min</span>';
+        (show.genres || []).forEach(function(g) {
+            meta += '<span class="row-genre">' + escHtml(g) + '</span>';
+        });
+
+        var showDataJson = JSON.stringify({
+            id: show.id, title: show.title, year: show.year, type: show.type,
+            episodes: show.episodes || null, runtime: show.runtime || null,
+            network: show.network || '', genres: show.genres || [], posterUrl: '', streaming: {}
+        }).replace(/'/g, "\\'").replace(/"/g, '&quot;');
+
+        var wantCls = 'row-btn' + (st === 'want_to_watch' ? ' want-active' : '');
+        var seenCls = 'row-btn' + (st === 'watched' ? ' seen-active' : '');
+
+        return '<div class="' + rowCls + '" data-sid="' + escHtml(show.id) + '" data-title="' + escHtml((show.title||'').toLowerCase()) + '">'
+            + '<div class="row-dot"></div>'
+            + '<div class="row-info">'
+            + '<div class="row-title">' + escHtml(show.title) + '</div>'
+            + (meta ? '<div class="row-meta">' + meta + '</div>' : '')
+            + '</div>'
+            + '<div class="row-btns">'
+            + '<button class="' + wantCls + '" data-rbtn="want" onclick="rowToggle(\'' + escHtml(show.id) + '\',\'want_to_watch\',' + showDataJson + ')">📋</button>'
+            + '<button class="' + seenCls + '" data-rbtn="seen" onclick="rowToggle(\'' + escHtml(show.id) + '\',\'watched\',' + showDataJson + ')">✓</button>'
+            + '</div>'
+            + '</div>';
+    }
+
+    /* ── Filter UI ── */
+    window.setFilter = function(f) {
+        activeFilter = f;
+        ['all','unseen','watched','want'].forEach(function(k) {
+            var btn = document.getElementById('btn-filter-' + k);
+            if (!btn) return;
+            btn.classList.remove('active', 'active-green');
+            if (k === f) {
+                if (k === 'watched') btn.classList.add('active-green');
+                else btn.classList.add('active');
+            }
+        });
+        applyFilter();
+    };
+
+    function applyFilter() {
+        var rows = document.querySelectorAll('.title-row');
+        rows.forEach(function(row) {
+            var showId = row.getAttribute('data-sid');
+            var titleLc = row.getAttribute('data-title') || '';
+            var st = getStatus(showId);
+            var matchFilter = activeFilter === 'all'     ? true
+                            : activeFilter === 'unseen'  ? !st
+                            : activeFilter === 'watched' ? (st === 'watched')
+                            : activeFilter === 'want'    ? (st === 'want_to_watch')
+                            : true;
+            var matchSearch = !searchQuery || titleLc.indexOf(searchQuery) !== -1;
+            if (matchFilter && matchSearch) row.classList.remove('hidden-row');
+            else row.classList.add('hidden-row');
+        });
+        // Update counts on tabs
+        updateTabCounts();
+    }
+
+    function updateTabCounts() {
+        allCategories.forEach(function(cat) {
+            var tabEl = document.getElementById('tab-' + cat.id);
+            if (!tabEl) return;
+            var section = document.getElementById('section-' + cat.id);
+            if (!section) return;
+            var visible = section.querySelectorAll('.title-row:not(.hidden-row)').length;
+            var countEl = tabEl.querySelector('.tab-count');
+            if (countEl) countEl.textContent = visible;
+        });
+    }
+
+    /* ── Search ── */
+    var searchTimer = null;
+    document.getElementById('filter-search').addEventListener('input', function(e) {
+        clearTimeout(searchTimer);
+        var val = e.target.value.trim().toLowerCase();
+        searchTimer = setTimeout(function() {
+            searchQuery = val;
+            applyFilter();
+        }, 120);
+    });
+
+    /* ── Render everything ── */
+    function render(categories) {
+        allCategories = categories;
+        var main = document.getElementById('main-content');
+
+        // Build category tabs
+        var tabsEl = document.getElementById('cat-tabs');
+        tabsEl.innerHTML = categories.map(function(cat) {
+            return '<button class="cat-tab" id="tab-' + escHtml(cat.id) + '" onclick="scrollToSection(\'' + escHtml(cat.id) + '\')">'
+                + escHtml(cat.label) + ' <span class="tab-count">' + cat.shows.length + '</span>'
+                + '</button>';
+        }).join('');
+
+        // Build sections
+        var html = '';
+        categories.forEach(function(cat) {
+            html += '<div class="cat-section" id="section-' + escHtml(cat.id) + '">'
+                + '<div class="cat-heading">'
+                + '<span class="cat-heading-title">' + escHtml(cat.label) + '</span>'
+                + '<span class="cat-heading-count" id="count-' + escHtml(cat.id) + '">' + cat.shows.length + '</span>'
+                + '</div>'
+                + '<div class="title-list">'
+                + cat.shows.map(buildRow).join('')
+                + '</div>'
+                + '</div>';
+        });
+
+        main.innerHTML = html;
+        updateNavBadge();
+        updateHeaderStats();
+    }
+
+    /* ── Scroll to section ── */
+    window.scrollToSection = function(catId) {
+        var el = document.getElementById('section-' + catId);
+        if (!el) return;
+        // Account for sticky header offsets (~96px nav + tabs)
+        var y = el.getBoundingClientRect().top + window.scrollY - 100;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+    };
+
+    /* ── Intersection observer to highlight active tab ── */
+    function setupTabHighlight() {
+        if (!window.IntersectionObserver) return;
+        var obs = new IntersectionObserver(function(entries) {
+            entries.forEach(function(e) {
+                if (e.isIntersecting && e.intersectionRatio > 0) {
+                    var catId = e.target.id.replace('section-', '');
+                    document.querySelectorAll('.cat-tab').forEach(function(t) { t.classList.remove('active'); });
+                    var tab = document.getElementById('tab-' + catId);
+                    if (tab) {
+                        tab.classList.add('active');
+                        // Scroll tab into view within the tabs bar
+                        tab.scrollIntoView({ inline: 'nearest', block: 'nearest' });
+                    }
+                }
+            });
+        }, { threshold: 0.05, rootMargin: '-80px 0px -70% 0px' });
+
+        allCategories.forEach(function(cat) {
+            var el = document.getElementById('section-' + cat.id);
+            if (el) obs.observe(el);
+        });
+    }
+
+    /* ── Fetch + init ── */
+    fetch('/api/popular-titles')
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+            if (data.success && data.categories && data.categories.length) {
+                render(data.categories);
+                setupTabHighlight();
+            } else {
+                document.getElementById('main-content').innerHTML =
+                    '<div class="empty-state">Could not load catalog. <a href="/" style="color:var(--coral)">Try searching →</a></div>';
+            }
+        })
+        .catch(function() {
+            document.getElementById('main-content').innerHTML =
+                '<div class="empty-state">Could not load catalog. <a href="/" style="color:var(--coral)">Try searching →</a></div>';
+        });
+
+    updateNavBadge();
+})();
+</script>
+</body>
+</html>

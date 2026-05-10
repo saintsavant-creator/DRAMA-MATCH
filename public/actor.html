@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actor Deep Dive — DramaMatch</title>
+    <meta name="description" content="Explore every K-drama, C-drama, and J-drama featuring this actor, ranked by how well they match your show.">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="alternate icon" href="/favicon.ico">
+    <!-- Google Search Console Verification -->
+    <meta name="google-site-verification" content="kKg0NGN-xvsiacmjcUKSRTWdhIOsN0U-R5P_yZw_doI" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet"></noscript>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg-deep: #0a0a0f;
+            --bg-card: #13131a;
+            --bg-accent: #1a1a24;
+            --bg-input: #16161f;
+            --coral: #e8614d;
+            --coral-glow: #ff7b6a;
+            --coral-dim: rgba(232,97,77,0.15);
+            --gold: #d4a853;
+            --gold-dim: rgba(212,168,83,0.15);
+            --green: #4ade80;
+            --green-dim: rgba(74,222,128,0.12);
+            --blue: #60a5fa;
+            --blue-dim: rgba(96,165,250,0.12);
+            --purple: #a78bfa;
+            --purple-dim: rgba(167,139,250,0.12);
+            --text-primary: #f0ece4;
+            --text-secondary: #9a9690;
+            --text-dim: #5a5750;
+            --border: #2a2a35;
+            --border-hover: #3a3a48;
+        }
+
+        body {
+            font-family: 'Inter', 'DM Sans', sans-serif;
+            background: #060608;
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; }
+
+        .accent {
+            background: linear-gradient(135deg, var(--coral) 0%, var(--coral-glow) 50%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ============================================ */
+        /* TOP NAV                                       */
+        /* ============================================ */
+        .top-nav {
+            display: flex;
+            align-items: center;
+            padding: 1.2rem 2rem;
+            border-bottom: 1px solid var(--border);
+            background: rgba(10,10,15,0.95);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: 'DM Sans', sans-serif;
+            transition: color 0.2s;
+            text-decoration: none;
+        }
+
+        .back-btn:hover { color: var(--coral); }
+
+        .back-btn svg { transition: transform 0.2s; }
+        .back-btn:hover svg { transform: translateX(-3px); }
+
+        .nav-logo {
+            margin-left: auto;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .nav-logo:hover { color: var(--text-primary); }
+
+        /* ============================================ */
+        /* ACTOR HERO                                    */
+        /* ============================================ */
+        .actor-hero {
+            padding: 3rem 2rem 2.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            align-items: flex-start;
+            gap: 2rem;
+            background:
+                radial-gradient(ellipse 60% 80% at 0% 0%, rgba(232,97,77,0.06) 0%, transparent 50%),
+                transparent;
+        }
+
+        .actor-avatar {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--coral) 0%, var(--coral-glow) 50%, var(--gold) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+            box-shadow: 0 8px 32px rgba(232,97,77,0.25);
+        }
+
+        .actor-info { flex: 1; }
+
+        .actor-eyebrow {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--coral);
+            margin-bottom: 0.5rem;
+        }
+
+        .actor-name {
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 0.6rem;
+        }
+
+        .actor-meta {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .actor-meta-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.25rem 0.75rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.78rem;
+        }
+
+        /* Context banner (source show match context) */
+        .context-banner {
+            max-width: 900px;
+            margin: 0 auto 2rem;
+            padding: 0 2rem;
+        }
+
+        .context-banner-inner {
+            background: var(--bg-accent);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--coral);
+            border-radius: 12px;
+            padding: 1rem 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .context-icon {
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .context-text {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            flex: 1;
+        }
+
+        .context-text strong { color: var(--text-primary); }
+
+        .context-clear {
+            background: none;
+            border: none;
+            color: var(--text-dim);
+            cursor: pointer;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.6rem;
+            border-radius: 6px;
+            transition: color 0.2s, background 0.2s;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .context-clear:hover {
+            color: var(--text-secondary);
+            background: rgba(255,255,255,0.06);
+        }
+
+        /* ============================================ */
+        /* SHOWS SECTION                                 */
+        /* ============================================ */
+        .shows-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem 6rem;
+        }
+
+        .shows-section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .shows-section-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-dim);
+        }
+
+        .shows-section-sort {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+        }
+
+        /* Show card */
+        .show-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 1.8rem;
+            margin-bottom: 1.2rem;
+            transition: border-color 0.3s, transform 0.2s;
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .show-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Poster placeholder */
+        .show-poster {
+            width: 72px;
+            height: 100px;
+            border-radius: 10px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-align: center;
+            padding: 0.5rem;
+            line-height: 1.3;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .show-poster-text {
+            position: relative;
+            z-index: 1;
+            color: rgba(255,255,255,0.85);
+            word-break: break-word;
+        }
+
+        .show-poster-bg {
+            position: absolute;
+            inset: 0;
+            opacity: 0.9;
+        }
+
+        .show-body { flex: 1; min-width: 0; }
+
+        .show-card-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .show-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            line-height: 1.2;
+        }
+
+        .show-year-net {
+            color: var(--text-dim);
+            font-size: 0.82rem;
+            margin-top: 0.2rem;
+        }
+
+        .role-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 100px;
+            font-size: 0.72rem;
+            font-weight: 500;
+            margin-top: 0.4rem;
+        }
+
+        .role-badge-lead {
+            background: var(--coral-dim);
+            color: var(--coral-glow);
+            border: 1px solid rgba(232,97,77,0.2);
+        }
+
+        .role-badge-support {
+            background: var(--bg-accent);
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+        }
+
+        /* Match score widget */
+        .match-widget {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 64px;
+            padding: 0.75rem;
+            background: var(--bg-accent);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .match-widget-score {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .match-widget-label {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-dim);
+            margin-top: 0.25rem;
+        }
+
+        .score-high .match-widget-score { color: var(--coral-glow); }
+        .score-medium .match-widget-score { color: var(--gold); }
+        .score-low .match-widget-score { color: var(--text-secondary); }
+
+        .show-synopsis {
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            line-height: 1.6;
+            margin: 0.6rem 0 0.8rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Match reasoning */
+        .show-reasoning {
+            background: var(--bg-accent);
+            border-left: 2px solid var(--coral);
+            border-radius: 0 8px 8px 0;
+            padding: 0.7rem 1rem;
+            margin-bottom: 0.9rem;
+        }
+
+        .show-reasoning-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--coral);
+            margin-bottom: 0.3rem;
+        }
+
+        .show-reasoning-text {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            line-height: 1.55;
+        }
+
+        .show-reasoning-text strong { color: var(--text-primary); }
+
+        /* Tags */
+        .tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.35rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .tag {
+            padding: 0.18rem 0.55rem;
+            border-radius: 7px;
+            font-size: 0.72rem;
+            font-weight: 500;
+        }
+
+        .tag-genre { background: var(--coral-dim); color: var(--coral-glow); }
+        .tag-trope { background: var(--purple-dim); color: var(--purple); }
+
+        /* Streaming badges */
+        .streaming-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-top: 0.6rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .streaming-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.4rem 0.9rem;
+            border-radius: 9px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        .streaming-badge:hover {
+            transform: translateY(-1px);
+            filter: brightness(1.2);
+            border-color: currentColor;
+        }
+
+        .streaming-badge-netflix { background: rgba(229,9,20,0.15); color: #ff4757; }
+        .streaming-badge-viki { background: rgba(26,159,217,0.15); color: #1ac4ff; }
+        .streaming-badge-kocowa { background: rgba(255,107,53,0.15); color: #ff8c57; }
+        .streaming-badge-amazon_prime { background: rgba(0,168,225,0.15); color: #00d4ff; }
+        .streaming-badge-disney { background: rgba(0,99,229,0.15); color: #4da3ff; }
+
+        .no-streaming {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+        /* ============================================ */
+        /* EMPTY / LOADING STATES                        */
+        /* ============================================ */
+        .loading-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .spinner {
+            width: 36px;
+            height: 36px;
+            border: 3px solid var(--border);
+            border-top-color: var(--coral);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .loading-text { color: var(--text-secondary); font-size: 0.9rem; }
+
+        .error-state {
+            text-align: center;
+            padding: 6rem 2rem;
+        }
+
+        .error-state h2 {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .error-state p { color: var(--text-secondary); font-size: 0.9rem; }
+
+        .error-state a {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.75rem 2rem;
+            background: linear-gradient(135deg, var(--coral), var(--coral-glow));
+            color: white;
+            border-radius: 10px;
+            text-decoration: none;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .error-state a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(232,97,77,0.3);
+        }
+
+        /* ============================================ */
+        /* ANIMATIONS                                    */
+        /* ============================================ */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .show-card {
+            opacity: 0;
+            animation: fadeInUp 0.35s ease-out forwards;
+        }
+
+        .show-card:nth-child(1) { animation-delay: 0.04s; }
+        .show-card:nth-child(2) { animation-delay: 0.08s; }
+        .show-card:nth-child(3) { animation-delay: 0.12s; }
+        .show-card:nth-child(4) { animation-delay: 0.16s; }
+        .show-card:nth-child(5) { animation-delay: 0.20s; }
+        .show-card:nth-child(6) { animation-delay: 0.24s; }
+        .show-card:nth-child(7) { animation-delay: 0.28s; }
+        .show-card:nth-child(8) { animation-delay: 0.32s; }
+        .show-card:nth-child(9) { animation-delay: 0.36s; }
+        .show-card:nth-child(10) { animation-delay: 0.40s; }
+
+        .actor-hero, .context-banner-inner { animation: fadeInUp 0.35s ease-out forwards; }
+
+        /* ============================================ */
+        /* RESPONSIVE                                    */
+        /* ============================================ */
+        @media (max-width: 640px) {
+            .actor-hero { flex-direction: column; gap: 1.2rem; padding: 2rem 1.25rem 1.5rem; }
+            .actor-avatar { width: 72px; height: 72px; font-size: 1.5rem; }
+            .shows-section { padding: 0 1.25rem 4rem; }
+            .context-banner { padding: 0 1.25rem; }
+            .show-card { flex-direction: column; padding: 1.25rem; gap: 0.9rem; }
+            .show-poster { width: 100%; height: 72px; object-fit: cover; }
+            .show-card-header { flex-direction: column-reverse; gap: 0.5rem; }
+            .match-widget { flex-direction: row; width: auto; padding: 0.5rem 1rem; gap: 0.5rem; }
+            .match-widget-label { margin-top: 0; }
+            .top-nav { padding: 0.85rem 1.25rem; }
+            .actor-name { font-size: clamp(1.6rem, 7vw, 2.5rem); }
+        }
+
+        footer {
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            color: var(--text-dim);
+            font-size: 0.8rem;
+        }
+
+        footer a { color: var(--text-secondary); text-decoration: none; }
+
+        /* Watchlist nav */
+        .nav-watchlist-link {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--coral) !important;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .wl-nav-badge {
+            background: var(--coral);
+            color: #fff;
+            font-size: 0.6rem;
+            font-weight: 700;
+            min-width: 15px;
+            height: 15px;
+            border-radius: 8px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 0 3px;
+            line-height: 1;
+        }
+        .wl-nav-badge.visible { display: inline-flex; }
+    </style>
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1686999645661477');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1686999645661477&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+</head>
+<body>
+
+    <!-- TOP NAV -->
+    <nav class="top-nav">
+        <a href="javascript:history.back()" class="back-btn" id="back-btn">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M8.5 2L3.5 7L8.5 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Back to results
+        </a>
+        <div style="display:flex;align-items:center;gap:16px;margin-left:auto;">
+            <a href="/watchlist" class="nav-watchlist-link">♡ Watchlist <span class="wl-nav-badge" id="nav-wl-badge"></span></a>
+            <a href="/actors" style="font-family:'Space Grotesk',sans-serif;font-size:0.82rem;font-weight:500;color:var(--coral);text-decoration:none;">Actor Dives</a>
+            <a href="/" class="nav-logo" style="margin-left:0;">DramaMatch</a>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT (dynamically populated) -->
+    <div id="app">
+        <div class="loading-state">
+            <div class="spinner"></div>
+            <div class="loading-text">pulling up their entire filmography for you...</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>DramaMatch &mdash; Built by <a href="https://polsia.com">Polsia</a></p>
+    </footer>
+
+    <script>
+    (function() {
+        const app = document.getElementById('app');
+        const backBtn = document.getElementById('back-btn');
+
+        // Parse URL params
+        const params = new URLSearchParams(window.location.search);
+        const actorName = params.get('name') || '';
+        const sourceShowId = params.get('source') || '';
+
+        // Update back button to go to source show if available
+        if (sourceShowId) {
+            backBtn.href = '/?show=' + encodeURIComponent(sourceShowId);
+            backBtn.addEventListener('click', function(e) {
+                // If we have history we can go back; if not go to homepage
+                if (window.history.length > 1) {
+                    e.preventDefault();
+                    history.back();
+                }
+            });
+        }
+
+        if (!actorName) {
+            renderError('No actor specified', 'Go back and click an actor name from the results.');
+            return;
+        }
+
+        // Update page title
+        document.title = actorName + ' — DramaMatch';
+
+        fetchActor();
+
+        async function fetchActor() {
+            try {
+                let url = '/api/actor?name=' + encodeURIComponent(actorName);
+                if (sourceShowId) url += '&source=' + encodeURIComponent(sourceShowId);
+
+                const res = await fetch(url);
+                const data = await res.json();
+
+                if (!data.success) {
+                    renderError('Actor not found', 'We don\'t have "' + escapeHtml(actorName) + '" in our database yet.');
+                    return;
+                }
+
+                renderPage(data);
+            } catch (err) {
+                renderError('Something went wrong', 'Please try going back and clicking the actor name again.');
+                console.error(err);
+            }
+        }
+
+        function renderPage(data) {
+            const { actor, source, shows } = data;
+
+            // Build initials for avatar
+            const initials = actor.name.split(/\s+/).map(w => w[0]).join('').substring(0, 2).toUpperCase();
+
+            // Context banner HTML
+            const contextHtml = source ? `
+                <div class="context-banner">
+                    <div class="context-banner-inner">
+                        <span class="context-icon">🎯</span>
+                        <span class="context-text">
+                            Showing match scores relative to <strong>${escapeHtml(source.title)}</strong> —
+                            dramas ranked by how well they match your show
+                        </span>
+                        <button class="context-clear" onclick="clearContext()">Clear context</button>
+                    </div>
+                </div>` : '';
+
+            // Sort label
+            const sortLabel = source
+                ? `Ranked by match score to ${escapeHtml(source.title)}`
+                : 'Lead roles first, newest first';
+
+            // Shows HTML
+            const showsHtml = shows.length === 0
+                ? '<p style="text-align:center; color: var(--text-dim); padding: 3rem;">No dramas found for this actor yet.</p>'
+                : shows.map(item => renderShowCard(item, source)).join('');
+
+            app.innerHTML = `
+                <div class="actor-hero">
+                    <div class="actor-avatar">${escapeHtml(initials)}</div>
+                    <div class="actor-info">
+                        <div class="actor-eyebrow">Actor Profile</div>
+                        <h1 class="actor-name">${escapeHtml(actor.name)}</h1>
+                        <div class="actor-meta">
+                            <span class="actor-meta-pill">🎬 ${shows.length} drama${shows.length !== 1 ? 's' : ''} in database</span>
+                            ${shows.filter(s => s.isLead).length > 0 ? `<span class="actor-meta-pill">⭐ ${shows.filter(s => s.isLead).length} lead role${shows.filter(s => s.isLead).length !== 1 ? 's' : ''}</span>` : ''}
+                        </div>
+                    </div>
+                </div>
+
+                ${contextHtml}
+
+                <div class="shows-section">
+                    <div class="shows-section-header">
+                        <div class="shows-section-title">Dramas</div>
+                        <div class="shows-section-sort">${sortLabel}</div>
+                    </div>
+                    <div id="shows-list">
+                        ${showsHtml}
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderShowCard(item, source) {
+            const { show, role, isLead, matchScore, reasoning } = item;
+
+            // Score widget (only if we have a source context)
+            let scoreHtml = '';
+            if (source && matchScore !== null) {
+                const scoreClass = matchScore >= 40 ? 'score-high' : matchScore >= 25 ? 'score-medium' : 'score-low';
+                scoreHtml = `
+                    <div class="match-widget ${scoreClass}">
+                        <div class="match-widget-score">${matchScore}%</div>
+                        <div class="match-widget-label">Match</div>
+                    </div>`;
+            }
+
+            // Role badge
+            const roleBadge = `
+                <span class="role-badge ${isLead ? 'role-badge-lead' : 'role-badge-support'}">
+                    ${isLead ? '⭐ Lead' : 'Supporting'} · ${escapeHtml(role)}
+                </span>`;
+
+            // Poster placeholder — gradient based on title hash
+            const posterGradient = getPosterGradient(show.title);
+            const shortTitle = show.title.length > 25 ? show.title.substring(0, 22) + '…' : show.title;
+
+            const posterHtml = `
+                <div class="show-poster">
+                    <div class="show-poster-bg" style="background: ${posterGradient}; border-radius: 10px;"></div>
+                    <div class="show-poster-text">${escapeHtml(shortTitle)}</div>
+                </div>`;
+
+            // Reasoning (only with source context)
+            const reasoningHtml = reasoning ? `
+                <div class="show-reasoning">
+                    <div class="show-reasoning-label">Why you'll love this</div>
+                    <div class="show-reasoning-text">${formatReasoning(reasoning)}</div>
+                </div>` : '';
+
+            // Tags
+            const genreHtml = (show.genres || []).slice(0, 4).map(g => `<span class="tag tag-genre">${escapeHtml(g)}</span>`).join('');
+            const tropeHtml = (show.tropes || []).slice(0, 3).map(t => `<span class="tag tag-trope">${escapeHtml(t)}</span>`).join('');
+
+            // Streaming badges
+            const platformMeta = {
+                netflix: { name: 'Netflix', css: 'netflix', icon: '▶' },
+                viki: { name: 'Viki', css: 'viki', icon: '▶' },
+                kocowa: { name: 'Kocowa', css: 'kocowa', icon: '▶' },
+                amazon_prime: { name: 'Prime Video', css: 'amazon_prime', icon: '▶' },
+                'disney+': { name: 'Disney+', css: 'disney', icon: '▶' }
+            };
+
+            const streamingKeys = Object.keys(show.streaming || {}).filter(s => show.streaming[s]);
+            const streamingHtml = streamingKeys.length > 0
+                ? streamingKeys.sort((a, b) => {
+                    const order = ['amazon_prime', 'netflix', 'viki', 'kocowa', 'disney+'];
+                    return order.indexOf(a) - order.indexOf(b);
+                }).map(s => {
+                    const meta = platformMeta[s] || { name: s, css: 'netflix', icon: '▶' };
+                    const affiliateUrl = '/api/affiliate/go/' + s + '/' + show.id;
+                    return `<a href="${affiliateUrl}" target="_blank" rel="noopener" class="streaming-badge streaming-badge-${meta.css}">${meta.icon} ${meta.name}</a>`;
+                }).join('')
+                : '<span class="no-streaming">Search streaming platforms for availability</span>';
+
+            return `
+                <div class="show-card">
+                    ${posterHtml}
+                    <div class="show-body">
+                        <div class="show-card-header">
+                            <div>
+                                <div class="show-title">${escapeHtml(show.title)}</div>
+                                <div class="show-year-net">${show.year || ''} ${show.episodes ? '· ' + show.episodes + ' eps' : ''} ${show.network ? '· ' + show.network : ''}</div>
+                                ${roleBadge}
+                            </div>
+                            ${scoreHtml}
+                        </div>
+
+                        ${show.synopsis ? `<div class="show-synopsis">${escapeHtml(show.synopsis)}</div>` : ''}
+
+                        ${reasoningHtml}
+
+                        ${genreHtml || tropeHtml ? `
+                        <div class="tag-row">${genreHtml}${tropeHtml}</div>
+                        ` : ''}
+
+                        <div class="streaming-row">${streamingHtml}</div>
+                    </div>
+                </div>`;
+        }
+
+        // Generate a deterministic gradient color pair from show title
+        function getPosterGradient(title) {
+            let hash = 0;
+            for (let i = 0; i < title.length; i++) {
+                hash = ((hash << 5) - hash) + title.charCodeAt(i);
+                hash = hash & hash;
+            }
+            const gradients = [
+                'linear-gradient(135deg, #e8614d 0%, #d4a853 100%)',  // coral → gold
+                'linear-gradient(135deg, #7c3aed 0%, #e8614d 100%)',  // purple → coral
+                'linear-gradient(135deg, #0369a1 0%, #7c3aed 100%)',  // blue → purple
+                'linear-gradient(135deg, #065f46 0%, #0369a1 100%)',  // green → blue
+                'linear-gradient(135deg, #9f1239 0%, #7c3aed 100%)',  // rose → purple
+                'linear-gradient(135deg, #1e40af 0%, #d4a853 100%)',  // navy → gold
+                'linear-gradient(135deg, #7c2d12 0%, #e8614d 100%)',  // brown → coral
+                'linear-gradient(135deg, #134e4a 0%, #d4a853 100%)',  // teal → gold
+            ];
+            return gradients[Math.abs(hash) % gradients.length];
+        }
+
+        function formatReasoning(text) {
+            return text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+        }
+
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function renderError(title, message) {
+            app.innerHTML = `
+                <div class="error-state">
+                    <h2>${title}</h2>
+                    <p>${message}</p>
+                    <a href="/">← Back to DramaMatch</a>
+                </div>`;
+        }
+
+        window.clearContext = function() {
+            const url = new URL(window.location.href);
+            url.searchParams.delete('source');
+            window.history.replaceState({}, '', url.toString());
+            fetchActor();
+        };
+    })();
+    </script>
+<script src="/track.js" defer></script>
+<script>
+(function() {
+    var count = 0;
+    try { count = JSON.parse(localStorage.getItem('dm_watchlist') || '[]').length; } catch(e) {}
+    var badge = document.getElementById('nav-wl-badge');
+    if (badge && count > 0) {
+        badge.textContent = count;
+        badge.classList.add('visible');
+    }
+})();
+</script>
+</body>
+</html>

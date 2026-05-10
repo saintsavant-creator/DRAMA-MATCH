@@ -1,0 +1,407 @@
+# DramaMatch — Full Catalog Index
+
+> Complete title index for AI/LLM crawlers. Summary version: https://dramamatch.app/llms.txt
+
+DramaMatch maps Western shows and movies to K-dramas using genre, theme, trope, tone, setting, and character-type matching.
+
+---
+
+## Korean Dramas (150 titles)
+
+Format: Title | Year | Genres | Streaming | URL
+
+Crash Landing on You | 2019 | romance, comedy, drama, action | Netflix, Amazon Prime | https://dramamatch.app/drama/crash-landing-on-you
+Goblin (Guardian: The Lonely and Great God) | 2016 | fantasy, romance, comedy, drama | Viki, Amazon Prime | https://dramamatch.app/drama/goblin
+Descendants of the Sun | 2016 | romance, action, drama, military | Netflix, Viki, Kocowa | https://dramamatch.app/drama/descendants-of-the-sun
+My Love from the Star | 2013 | romance, comedy, sci-fi, fantasy | Viki, Kocowa, Amazon Prime | https://dramamatch.app/drama/my-love-from-the-star
+What's Wrong with Secretary Kim | 2018 | romance, comedy, drama | Netflix, Viki | https://dramamatch.app/drama/whats-wrong-with-secretary-kim
+Strong Woman Do Bong Soon | 2017 | romance, comedy, action, fantasy | Netflix, Viki | https://dramamatch.app/drama/strong-woman-do-bong-soon
+Weightlifting Fairy Kim Bok Joo | 2016 | romance, comedy, sports, coming-of-age | Viki, Kocowa | https://dramamatch.app/drama/weightlifting-fairy-kim-bok-joo
+Business Proposal | 2022 | romance, comedy | Netflix, Kocowa | https://dramamatch.app/drama/business-proposal
+Hometown Cha-Cha-Cha | 2021 | romance, comedy, slice-of-life | Netflix | https://dramamatch.app/drama/hometown-cha-cha-cha
+Reply 1988 | 2015 | slice-of-life, comedy, romance, drama | Netflix, Viki | https://dramamatch.app/drama/reply-1988
+Hospital Playlist | 2020 | medical, slice-of-life, comedy, drama | Netflix | https://dramamatch.app/drama/hospital-playlist
+Signal | 2016 | crime, thriller, mystery, sci-fi | Viki | https://dramamatch.app/drama/signal
+Stranger (Secret Forest) | 2017 | crime, thriller, legal, mystery | Netflix | https://dramamatch.app/drama/stranger
+Flower of Evil | 2020 | thriller, romance, mystery, crime | Viki, Amazon Prime | https://dramamatch.app/drama/flower-of-evil
+Vincenzo | 2021 | crime, comedy, drama, action | Netflix | https://dramamatch.app/drama/vincenzo
+Cafe Minamdang | 2022 | crime, comedy, mystery, action | Netflix, Kocowa | https://dramamatch.app/drama/cafe-minamdang
+Hotel del Luna | 2019 | fantasy, romance, drama, comedy | Viki, Amazon Prime | https://dramamatch.app/drama/hotel-del-luna
+Itaewon Class | 2020 | drama, romance, business | Netflix | https://dramamatch.app/drama/itaewon-class
+Squid Game | 2021 | thriller, drama, survival, action | Netflix | https://dramamatch.app/drama/squid-game
+Kingdom | 2019 | horror, thriller, historical, action | Netflix | https://dramamatch.app/drama/kingdom
+Mr. Sunshine | 2018 | historical, romance, action, drama | Netflix | https://dramamatch.app/drama/mr-sunshine
+The Glory | 2022 | thriller, drama, revenge | Netflix | https://dramamatch.app/drama/the-glory
+Extraordinary Attorney Woo | 2022 | legal, comedy, drama, slice-of-life | Netflix | https://dramamatch.app/drama/extraordinary-attorney-woo
+My Mister (My Ajusshi) | 2018 | drama, slice-of-life | Viki | https://dramamatch.app/drama/my-mister
+Misaeng (Incomplete Life) | 2014 | drama, slice-of-life, workplace | Viki | https://dramamatch.app/drama/misaeng
+Prison Playbook | 2017 | comedy, drama, slice-of-life | Netflix | https://dramamatch.app/drama/prison-playbook
+Penthouse: War in Life | 2020 | drama, thriller, mystery, makjang | Viki, Kocowa | https://dramamatch.app/drama/penthouse
+Alchemy of Souls | 2022 | fantasy, romance, action, historical | Netflix | https://dramamatch.app/drama/alchemy-of-souls
+Tale of the Nine Tailed | 2020 | fantasy, romance, action, supernatural | Viki, Amazon Prime | https://dramamatch.app/drama/tale-of-the-nine-tailed
+Moon Lovers: Scarlet Heart Ryeo | 2016 | historical, romance, drama, fantasy | Viki, Kocowa, Amazon Prime | https://dramamatch.app/drama/moon-lovers-scarlet-heart-ryeo
+Love in the Moonlight | 2016 | historical, romance, comedy | Viki, Kocowa, Amazon Prime | https://dramamatch.app/drama/love-in-the-moonlight
+Queen of Tears | 2024 | romance, comedy, drama | Netflix | https://dramamatch.app/drama/queen-of-tears
+Twenty-Five Twenty-One | 2022 | romance, coming-of-age, sports, drama | Netflix | https://dramamatch.app/drama/twenty-five-twenty-one
+Our Beloved Summer | 2021 | romance, comedy, drama, slice-of-life | Netflix | https://dramamatch.app/drama/our-beloved-summer
+My Name | 2021 | action, thriller, crime, noir | Netflix | https://dramamatch.app/drama/my-name
+All of Us Are Dead | 2022 | horror, thriller, action, zombie | Netflix | https://dramamatch.app/drama/all-of-us-are-dead
+Sweet Home | 2020 | horror, thriller, sci-fi, action | Netflix | https://dramamatch.app/drama/sweet-home
+Move to Heaven | 2021 | drama, slice-of-life | Netflix | https://dramamatch.app/drama/move-to-heaven
+D.P. (Deserter Pursuit) | 2021 | drama, military, thriller | Netflix | https://dramamatch.app/drama/dp
+Taxi Driver | 2021 | action, crime, thriller, drama | Viki, Kocowa | https://dramamatch.app/drama/taxi-driver
+The Devil Judge | 2021 | thriller, drama, dystopian, legal | Viki | https://dramamatch.app/drama/the-devil-judge
+Beyond Evil | 2021 | thriller, mystery, crime | Viki | https://dramamatch.app/drama/beyond-evil
+Mouse | 2021 | thriller, mystery, crime, psychological | Viki | https://dramamatch.app/drama/mouse
+Through the Darkness | 2022 | crime, thriller, drama | Viki, Kocowa | https://dramamatch.app/drama/through-the-darkness
+Under the Queen's Umbrella | 2022 | historical, drama, comedy | Netflix | https://dramamatch.app/drama/under-the-queens-umbrella
+The King: Eternal Monarch | 2020 | romance, fantasy, sci-fi, action | Netflix | https://dramamatch.app/drama/the-king-eternal-monarch
+Touch Your Heart | 2019 | romance, comedy, legal | Viki | https://dramamatch.app/drama/touch-your-heart
+Her Private Life | 2019 | romance, comedy | Viki | https://dramamatch.app/drama/her-private-life
+Hwarang: The Poet Warrior Youth | 2016 | historical, romance, action, coming-of-age | Viki, Kocowa | https://dramamatch.app/drama/hwarang
+My Roommate Is a Gumiho | 2021 | fantasy, romance, comedy | Viki | https://dramamatch.app/drama/my-roommate-is-a-gumiho
+SKY Castle | 2018 | drama, thriller, satire | Viki | https://dramamatch.app/drama/sky-castle
+Youth of May | 2021 | romance, historical, drama | Viki, Kocowa | https://dramamatch.app/drama/youth-of-may
+Doom at Your Service | 2021 | fantasy, romance, drama | Viki | https://dramamatch.app/drama/doom-at-your-service
+Start-Up | 2020 | romance, drama, business | Netflix | https://dramamatch.app/drama/start-up
+True Beauty | 2020 | romance, comedy, coming-of-age | Viki | https://dramamatch.app/drama/true-beauty
+Nevertheless | 2021 | romance, drama | Netflix | https://dramamatch.app/drama/nevertheless
+The World of the Married | 2020 | drama, thriller, romance | Viki | https://dramamatch.app/drama/the-world-of-the-married
+When the Camellia Blooms | 2019 | romance, comedy, thriller, drama | Netflix, Kocowa | https://dramamatch.app/drama/when-the-camellia-blooms
+Black | 2017 | fantasy, mystery, romance, thriller | Netflix | https://dramamatch.app/drama/black
+Dr. Romantic (Romantic Doctor, Teacher Kim) | 2016 | medical, drama, romance | Viki, Kocowa | https://dramamatch.app/drama/doctor-romantic
+While You Were Sleeping | 2017 | fantasy, romance, legal, mystery | Viki, Kocowa, Amazon Prime | https://dramamatch.app/drama/while-you-were-sleeping
+Boys Over Flowers | 2009 | romance, comedy, drama | Viki, Kocowa, Amazon Prime | https://dramamatch.app/drama/boys-over-flowers
+Secret Garden | 2010 | romance, fantasy, comedy, drama | Viki, Kocowa, Amazon Prime | https://dramamatch.app/drama/secret-garden
+Coffee Prince | 2007 | romance, comedy, drama | Viki, Kocowa | https://dramamatch.app/drama/coffee-prince
+Full House | 2004 | romance, comedy, drama | Viki, Kocowa, Amazon Prime | https://dramamatch.app/drama/full-house
+The Heirs (Inheritors) | 2013 | romance, drama, school | Viki, Kocowa, Amazon Prime | https://dramamatch.app/drama/the-heirs
+I Hear Your Voice | 2013 | romance, legal, thriller, fantasy | Viki, Kocowa, Amazon Prime | https://dramamatch.app/drama/i-hear-your-voice
+Pinocchio | 2014 | romance, drama, journalism | Viki, Kocowa, Amazon Prime | https://dramamatch.app/drama/pinocchio
+Kill Me Heal Me | 2015 | romance, comedy, drama, psychological | Viki, Kocowa, Amazon Prime | https://dramamatch.app/drama/kill-me-heal-me
+She Was Pretty | 2015 | romance, comedy, drama | Netflix, Viki, Kocowa | https://dramamatch.app/drama/she-was-pretty
+Fight for My Way | 2017 | romance, comedy, drama | Viki, Kocowa, Amazon Prime | https://dramamatch.app/drama/fight-for-my-way
+Because This Is My First Life | 2017 | romance, comedy, drama | Netflix, Viki | https://dramamatch.app/drama/because-this-is-my-first-life
+My ID is Gangnam Beauty | 2018 | romance, drama, school | Viki, Kocowa, Amazon Prime | https://dramamatch.app/drama/my-id-is-gangnam-beauty
+100 Days My Prince | 2018 | romance, comedy, historical | Netflix, Viki | https://dramamatch.app/drama/100-days-my-prince
+Mr. Queen (The Crazed Chef) | 2020 | romance, comedy, historical, fantasy | Viki, Kocowa | https://dramamatch.app/drama/mr-queen
+Sungkyunkwan Scandal | 2010 | romance, historical, comedy, drama | Viki, Kocowa, Amazon Prime | https://dramamatch.app/drama/sungkyunkwan-scandal
+Jewel in the Palace (Daejanggeum) | 2003 | historical, drama, romance | Viki, Kocowa | https://dramamatch.app/drama/jewel-in-the-palace
+The Moon That Embraces the Sun | 2012 | romance, historical, fantasy, drama | Viki, Kocowa, Amazon Prime | https://dramamatch.app/drama/the-moon-that-embraces-the-sun
+Master of the Sun | 2013 | romance, comedy, fantasy, drama | Viki, Kocowa, Amazon Prime | https://dramamatch.app/drama/master-of-the-sun
+W: Two Worlds Apart | 2016 | romance, thriller, fantasy, sci-fi | Viki, Kocowa, Amazon Prime | https://dramamatch.app/drama/w-two-worlds
+Memories of the Alhambra | 2018 | thriller, romance, sci-fi, fantasy | Netflix, Viki | https://dramamatch.app/drama/memories-of-the-alhambra
+Shopping King Louie | 2016 | romance, comedy, drama | Viki, Kocowa, Amazon Prime | https://dramamatch.app/drama/shopping-king-louie
+Hellbound | 2021 | thriller, horror, sci-fi, drama | Netflix | https://dramamatch.app/drama/hellbound
+Happiness | 2021 | thriller, romance, horror, drama | Disney+, Viki | https://dramamatch.app/drama/happiness-kdrama
+Bad and Crazy | 2021 | action, comedy, thriller, fantasy | Viki, Netflix | https://dramamatch.app/drama/bad-and-crazy
+The Red Sleeve | 2021 | romance, historical, drama | Viki, Kocowa, Amazon Prime | https://dramamatch.app/drama/the-red-sleeve
+Juvenile Justice | 2022 | legal, drama, thriller | Netflix | https://dramamatch.app/drama/juvenile-justice
+Forecasting Love and Weather | 2022 | romance, comedy, drama | Netflix, Viki | https://dramamatch.app/drama/forecasting-love-and-weather
+Our Blues | 2022 | romance, drama, slice-of-life | Netflix, Viki | https://dramamatch.app/drama/our-blues
+Little Women | 2022 | thriller, drama, mystery | Netflix | https://dramamatch.app/drama/little-women-kdrama
+Reborn Rich | 2022 | drama, thriller, fantasy | Disney+, Viki | https://dramamatch.app/drama/reborn-rich
+Big Mouth | 2022 | thriller, action, drama, legal | Disney+, Viki | https://dramamatch.app/drama/big-mouth-kdrama
+Love to Hate You | 2023 | romance, comedy, drama | Netflix | https://dramamatch.app/drama/love-to-hate-you
+Moving | 2023 | action, thriller, sci-fi, drama | Disney+ | https://dramamatch.app/drama/moving-kdrama
+My Demon | 2023 | romance, fantasy, comedy, drama | Netflix | https://dramamatch.app/drama/my-demon
+Crash Course in Romance | 2023 | romance, comedy, drama | Netflix | https://dramamatch.app/drama/crash-course-in-romance
+King the Land | 2023 | romance, comedy, drama | Netflix | https://dramamatch.app/drama/king-the-land
+See You in My 19th Life | 2023 | romance, fantasy, drama | Netflix | https://dramamatch.app/drama/see-you-in-my-19th-life
+Mask Girl | 2023 | thriller, drama, mystery | Netflix | https://dramamatch.app/drama/mask-girl
+My Perfect Stranger | 2023 | romance, thriller, sci-fi, mystery | Viki, Kocowa | https://dramamatch.app/drama/my-perfect-stranger
+Black Knight | 2023 | action, sci-fi, thriller, drama | Netflix | https://dramamatch.app/drama/black-knight-kdrama
+Doctor Slump | 2024 | romance, comedy, drama | Netflix | https://dramamatch.app/drama/doctor-slump
+Lovely Runner | 2024 | romance, fantasy, drama, music | Viki, Kocowa | https://dramamatch.app/drama/lovely-runner
+A Killer Paradox | 2024 | thriller, dark-comedy, crime | Netflix | https://dramamatch.app/drama/a-killer-paradox
+When the Phone Rings | 2024 | romance, thriller, drama | Netflix | https://dramamatch.app/drama/when-the-phone-rings
+Marry My Husband | 2024 | romance, fantasy, thriller, drama | Amazon Prime, Viki | https://dramamatch.app/drama/marry-my-husband
+Hierarchy | 2024 | thriller, drama, school, mystery | Netflix | https://dramamatch.app/drama/hierarchy-kdrama
+The Atypical Family | 2024 | romance, fantasy, comedy, drama | Netflix | https://dramamatch.app/drama/the-atypical-family
+Love Next Door | 2024 | romance, comedy, drama | Netflix | https://dramamatch.app/drama/love-next-door
+The Uncanny Counter | 2020 | action, fantasy, comedy, drama | Netflix, Viki | https://dramamatch.app/drama/the-uncanny-counter
+Inspector Koo | 2021 | thriller, crime, comedy, drama | Amazon Prime, Viki | https://dramamatch.app/drama/inspector-koo
+Vagabond | 2019 | action, thriller, drama, mystery | Netflix | https://dramamatch.app/drama/vagabond
+Lawless Lawyer | 2018 | legal, action, romance, thriller | Netflix, Viki | https://dramamatch.app/drama/lawless-lawyer
+The Good Detective | 2020 | crime, thriller, drama | Viki, Kocowa | https://dramamatch.app/drama/the-good-detective
+Alice | 2020 | sci-fi, thriller, romance, drama | Viki, Kocowa | https://dramamatch.app/drama/alice-kdrama
+Sisyphus: The Myth | 2021 | sci-fi, thriller, action, romance | Netflix | https://dramamatch.app/drama/sisyphus-the-myth
+Tomorrow | 2022 | fantasy, drama, comedy | Netflix | https://dramamatch.app/drama/tomorrow-kdrama
+Flex x Cop | 2024 | action, comedy, crime, romance | Disney+ | https://dramamatch.app/drama/flex-x-cop
+18 Again | 2020 | romance, fantasy, comedy, drama | Viki, Kocowa, Amazon Prime | https://dramamatch.app/drama/18-again
+Go Back Couple | 2017 | romance, comedy, fantasy | Viki, Kocowa | https://dramamatch.app/drama/go-back-couple
+My Liberation Notes | 2022 | romance, drama, slice-of-life | Netflix | https://dramamatch.app/drama/my-liberation-notes
+Thirty-Nine | 2022 | romance, drama, slice-of-life | Netflix | https://dramamatch.app/drama/thirty-nine
+On the Verge of Insanity | 2021 | comedy, drama, workplace | Viki, Kocowa | https://dramamatch.app/drama/on-the-verge-of-insanity
+Revenge of Others | 2022 | thriller, mystery, school, drama | Disney+ | https://dramamatch.app/drama/revenge-of-others
+Romance Is a Bonus Book | 2019 | romance, drama, comedy | Netflix | https://dramamatch.app/drama/romance-is-a-bonus-book
+One Spring Night | 2019 | romance, drama | Netflix, Viki | https://dramamatch.app/drama/one-spring-night
+Run On | 2020 | romance, drama, sports | Netflix | https://dramamatch.app/drama/run-on
+Navillera | 2021 | drama, slice-of-life, sports | Netflix | https://dramamatch.app/drama/navillera
+Suspicious Partner | 2017 | romance, legal, thriller, comedy | Netflix, Viki | https://dramamatch.app/drama/suspicious-partner
+Yumi's Cells | 2021 | romance, comedy, drama, animation | Apple TV+, Viki | https://dramamatch.app/drama/yumis-cells
+Extracurricular | 2020 | crime, thriller, drama, school | Netflix | https://dramamatch.app/drama/extracurricular
+The Light in Your Eyes | 2019 | romance, fantasy, drama | Viki, Netflix | https://dramamatch.app/drama/the-light-in-your-eyes
+Temperature of Love | 2017 | romance, drama, food | Viki, Kocowa | https://dramamatch.app/drama/temperature-of-love
+Shadow Detective | 2022 | crime, thriller, drama | Amazon Prime, Viki | https://dramamatch.app/drama/shadow-detective
+Grid | 2022 | sci-fi, thriller, mystery | Disney+, Viki | https://dramamatch.app/drama/grid-kdrama
+My Lovely Liar | 2023 | romance, fantasy, mystery, drama | Viki, Kocowa | https://dramamatch.app/drama/my-lovely-liar
+Destined with You | 2023 | romance, fantasy, comedy | Netflix | https://dramamatch.app/drama/destined-with-you
+Good Partner | 2024 | legal, romance, comedy, drama | Netflix | https://dramamatch.app/drama/good-partner
+Missing Crown Prince | 2024 | romance, historical, comedy | Viki | https://dramamatch.app/drama/missing-crown-prince
+Connection | 2024 | crime, thriller, drama | Disney+ | https://dramamatch.app/drama/connection-kdrama
+Catch the Ghost | 2019 | romance, comedy, crime, drama | Viki, Kocowa | https://dramamatch.app/drama/catch-the-ghost
+Behind Your Touch | 2023 | romance, comedy, mystery, fantasy | Netflix | https://dramamatch.app/drama/behind-your-touch
+Family by Choice | 2024 | romance, drama, comedy | Viki | https://dramamatch.app/drama/family-by-choice
+The Midnight Studio | 2024 | romance, fantasy, mystery, drama | Viki | https://dramamatch.app/drama/the-midnight-studio
+Orange Marmalade | 2015 | romance, fantasy, school, drama | Viki, Kocowa, Netflix | https://dramamatch.app/drama/orange-marmalade
+Welcome to Waikiki | 2018 | comedy, romance, drama | Viki, Kocowa | https://dramamatch.app/drama/welcome-to-waikiki
+The Cursed | 2020 | horror, thriller, supernatural, drama | Viki | https://dramamatch.app/drama/the-cursed
+My Unfamiliar Family | 2020 | drama, romance, family | Netflix | https://dramamatch.app/drama/my-unfamiliar-family
+Be Melodramatic (Meloholic) | 2019 | romance, comedy, drama, slice-of-life | Netflix | https://dramamatch.app/drama/be-melodramatic
+Song of the Bandits | 2023 | action, historical, thriller, drama | Netflix | https://dramamatch.app/drama/song-of-the-bandits
+
+---
+
+## Korean Movies (18 titles)
+
+Format: Title | Year | Genres | Streaming | URL
+
+Parasite | 2019 | thriller, drama, dark-comedy, mystery | Amazon Prime | https://dramamatch.app/drama/parasite-kmovie
+Train to Busan | 2016 | horror, action, drama, thriller | Netflix, Amazon Prime | https://dramamatch.app/drama/train-to-busan
+Oldboy | 2003 | thriller, mystery, action, drama | Amazon Prime | https://dramamatch.app/drama/oldboy
+The Handmaiden | 2016 | thriller, romance, drama, mystery | Amazon Prime | https://dramamatch.app/drama/the-handmaiden
+My Sassy Girl | 2001 | romance, comedy, drama | Viki, Amazon Prime | https://dramamatch.app/drama/my-sassy-girl-movie
+Memories of Murder | 2003 | crime, thriller, drama, mystery | Netflix, Amazon Prime | https://dramamatch.app/drama/memories-of-murder
+The Man from Nowhere | 2010 | action, thriller, drama | Netflix, Amazon Prime | https://dramamatch.app/drama/the-man-from-nowhere
+Along With the Gods: The Two Worlds | 2017 | fantasy, action, drama, family | Netflix | https://dramamatch.app/drama/along-with-the-gods-two-worlds
+A Bittersweet Life | 2005 | action, crime, thriller, drama | Amazon Prime | https://dramamatch.app/drama/a-bittersweet-life
+The Thieves | 2012 | action, crime, comedy, thriller | Netflix, Viki | https://dramamatch.app/drama/the-thieves
+Ode to My Father | 2014 | drama, historical, family, romance | Netflix, Viki | https://dramamatch.app/drama/ode-to-my-father
+Architecture 101 | 2012 | romance, drama, coming-of-age | Netflix, Viki | https://dramamatch.app/drama/architecture-101
+The Wailing | 2016 | horror, mystery, thriller, drama | Netflix | https://dramamatch.app/drama/the-wailing
+My Love, My Bride | 2014 | romance, comedy, drama | Viki | https://dramamatch.app/drama/crash-course-in-romance-movie
+Masquerade | 2012 | historical, drama, comedy | Netflix, Viki | https://dramamatch.app/drama/masquerade-movie
+Extreme Job | 2019 | comedy, action, crime | Netflix | https://dramamatch.app/drama/extreme-job
+Tune in for Love | 2019 | romance, drama | Netflix | https://dramamatch.app/drama/her-private-life-movie
+I Saw the Devil | 2010 | thriller, crime, action, drama | Amazon Prime | https://dramamatch.app/drama/i-saw-the-devil
+
+---
+
+## Western TV Shows (152 titles — search inputs for matching)
+
+Format: Title | Year | Genres | Match URL
+
+Psych | 2006 | comedy, crime, mystery | https://dramamatch.app/match/psych
+Breaking Bad | 2008 | crime, drama, thriller | https://dramamatch.app/match/breaking-bad
+Game of Thrones | 2011 | fantasy, drama, action | https://dramamatch.app/match/game-of-thrones
+Stranger Things | 2016 | sci-fi, horror, drama, coming-of-age | https://dramamatch.app/match/stranger-things
+The Office (US) | 2005 | comedy, slice-of-life | https://dramamatch.app/match/the-office
+Friends | 1994 | comedy, romance, slice-of-life | https://dramamatch.app/match/friends
+Grey's Anatomy | 2005 | medical, drama, romance | https://dramamatch.app/match/greys-anatomy
+Criminal Minds | 2005 | crime, thriller, mystery | https://dramamatch.app/match/criminal-minds
+Sherlock | 2010 | crime, mystery, drama | https://dramamatch.app/match/sherlock
+Money Heist (La Casa de Papel) | 2017 | crime, thriller, action, heist | https://dramamatch.app/match/money-heist
+The Walking Dead | 2010 | horror, drama, action, zombie | https://dramamatch.app/match/the-walking-dead
+Bridgerton | 2020 | romance, historical, drama | https://dramamatch.app/match/bridgerton
+You | 2018 | thriller, psychological, crime, romance | https://dramamatch.app/match/you
+Suits | 2011 | legal, drama, comedy | https://dramamatch.app/match/suits
+Brooklyn Nine-Nine | 2013 | comedy, crime | https://dramamatch.app/match/brooklyn-nine-nine
+Downton Abbey | 2010 | historical, drama, romance | https://dramamatch.app/match/downton-abbey
+The Witcher | 2019 | fantasy, action, adventure, drama | https://dramamatch.app/match/the-witcher
+Dark | 2017 | sci-fi, thriller, mystery | https://dramamatch.app/match/dark
+Black Mirror | 2011 | sci-fi, thriller, anthology | https://dramamatch.app/match/black-mirror
+Ted Lasso | 2020 | comedy, sports, drama | https://dramamatch.app/match/ted-lasso
+Succession | 2018 | drama, comedy, thriller | https://dramamatch.app/match/succession
+Ozark | 2017 | crime, drama, thriller | https://dramamatch.app/match/ozark
+Killing Eve | 2018 | thriller, spy, drama, dark-comedy | https://dramamatch.app/match/killing-eve
+Gilmore Girls | 2000 | comedy, drama, romance, slice-of-life | https://dramamatch.app/match/gilmore-girls
+The Crown | 2016 | historical, drama, biographical | https://dramamatch.app/match/the-crown
+Dexter | 2006 | crime, thriller, mystery, drama | https://dramamatch.app/match/dexter
+House M.D. | 2004 | medical, drama, mystery | https://dramamatch.app/match/house
+The Good Place | 2016 | comedy, fantasy, drama | https://dramamatch.app/match/the-good-place
+Lost | 2004 | drama, mystery, sci-fi, adventure | https://dramamatch.app/match/lost
+The Mandalorian | 2019 | sci-fi, action, adventure | https://dramamatch.app/match/the-mandalorian
+The White Lotus | 2021 | drama, comedy, mystery | https://dramamatch.app/match/white-lotus
+Veronica Mars | 2004 | mystery, crime, drama, noir | https://dramamatch.app/match/veronica-mars
+Fleabag | 2016 | comedy, drama | https://dramamatch.app/match/fleabag
+Homeland | 2011 | thriller, spy, drama | https://dramamatch.app/match/homeland
+The Boys | 2019 | action, sci-fi, drama, dark-comedy | https://dramamatch.app/match/the-boys
+Outlander | 2014 | romance, historical, fantasy, drama | https://dramamatch.app/match/outlander
+Better Call Saul | 2015 | crime, drama, thriller | https://dramamatch.app/match/better-call-saul
+Peaky Blinders | 2013 | crime, drama, historical | https://dramamatch.app/match/peaky-blinders
+True Detective | 2014 | crime, thriller, mystery, drama | https://dramamatch.app/match/true-detective
+Mindhunter | 2017 | crime, thriller, psychological, drama | https://dramamatch.app/match/mindhunter
+Fargo | 2014 | crime, drama, dark-comedy, thriller | https://dramamatch.app/match/fargo
+Narcos | 2015 | crime, drama, thriller, biographical | https://dramamatch.app/match/narcos
+Mare of Easttown | 2021 | crime, drama, mystery | https://dramamatch.app/match/mare-of-easttown
+Broadchurch | 2013 | crime, drama, mystery | https://dramamatch.app/match/broadchurch
+The Blacklist | 2013 | crime, thriller, mystery, action | https://dramamatch.app/match/the-blacklist
+Prison Break | 2005 | action, thriller, crime, drama | https://dramamatch.app/match/prison-break
+Hannibal | 2013 | crime, thriller, horror, psychological | https://dramamatch.app/match/hannibal
+The Mentalist | 2008 | crime, mystery, drama | https://dramamatch.app/match/the-mentalist
+Schitt's Creek | 2015 | comedy, drama, romance | https://dramamatch.app/match/schitts-creek
+Parks and Recreation | 2009 | comedy, slice-of-life | https://dramamatch.app/match/parks-and-recreation
+New Girl | 2011 | comedy, romance, slice-of-life | https://dramamatch.app/match/new-girl
+How I Met Your Mother | 2005 | comedy, romance, slice-of-life | https://dramamatch.app/match/how-i-met-your-mother
+Modern Family | 2009 | comedy, slice-of-life, family | https://dramamatch.app/match/modern-family
+Only Murders in the Building | 2021 | comedy, mystery, crime | https://dramamatch.app/match/only-murders-in-the-building
+Abbott Elementary | 2021 | comedy, slice-of-life | https://dramamatch.app/match/abbott-elementary
+The Big Bang Theory | 2007 | comedy, romance, slice-of-life | https://dramamatch.app/match/the-big-bang-theory
+Seinfeld | 1989 | comedy, slice-of-life | https://dramamatch.app/match/seinfeld
+The Marvelous Mrs. Maisel | 2017 | comedy, drama, historical | https://dramamatch.app/match/the-marvelous-mrs-maisel
+This Is Us | 2016 | drama, romance, family | https://dramamatch.app/match/this-is-us
+The Handmaid's Tale | 2017 | drama, sci-fi, thriller | https://dramamatch.app/match/the-handmaids-tale
+Yellowstone | 2018 | drama, western, thriller | https://dramamatch.app/match/yellowstone
+Big Little Lies | 2017 | drama, mystery, thriller | https://dramamatch.app/match/big-little-lies
+Euphoria | 2019 | drama, coming-of-age | https://dramamatch.app/match/euphoria
+Normal People | 2020 | drama, romance | https://dramamatch.app/match/normal-people
+Scandal | 2012 | drama, thriller, political | https://dramamatch.app/match/scandal
+How to Get Away with Murder | 2014 | crime, drama, thriller, legal | https://dramamatch.app/match/how-to-get-away-with-murder
+Parenthood | 2010 | drama, family, slice-of-life | https://dramamatch.app/match/parenthood
+The Morning Show | 2019 | drama, thriller | https://dramamatch.app/match/the-morning-show
+Westworld | 2016 | sci-fi, thriller, drama, western | https://dramamatch.app/match/westworld
+Severance | 2022 | sci-fi, thriller, drama, mystery | https://dramamatch.app/match/severance
+The Umbrella Academy | 2019 | sci-fi, action, comedy, drama | https://dramamatch.app/match/the-umbrella-academy
+WandaVision | 2021 | sci-fi, mystery, comedy, drama | https://dramamatch.app/match/wandavision
+Loki | 2021 | sci-fi, action, fantasy, comedy | https://dramamatch.app/match/loki
+Arcane | 2021 | animation, action, drama, fantasy | https://dramamatch.app/match/arcane
+The Haunting of Hill House | 2018 | horror, drama, mystery | https://dramamatch.app/match/the-haunting-of-hill-house
+Shadow and Bone | 2021 | fantasy, action, romance, adventure | https://dramamatch.app/match/shadow-and-bone
+Emily in Paris | 2020 | comedy, romance, drama | https://dramamatch.app/match/emily-in-paris
+Jane the Virgin | 2014 | comedy, drama, romance | https://dramamatch.app/match/jane-the-virgin
+Sex and the City | 1998 | comedy, romance, drama | https://dramamatch.app/match/sex-and-the-city
+Gossip Girl | 2007 | drama, romance, teen | https://dramamatch.app/match/gossip-girl
+The Queen's Gambit | 2020 | drama, historical | https://dramamatch.app/match/the-queens-gambit
+Poldark | 2015 | historical, drama, romance | https://dramamatch.app/match/poldark
+Virgin River | 2019 | romance, drama | https://dramamatch.app/match/virgin-river
+Call the Midwife | 2012 | historical, drama, medical | https://dramamatch.app/match/call-the-midwife
+Cobra Kai | 2018 | action, comedy, drama | https://dramamatch.app/match/cobra-kai
+Wednesday | 2022 | comedy, mystery, horror, coming-of-age | https://dramamatch.app/match/wednesday
+Lupin | 2021 | crime, thriller, action, mystery | https://dramamatch.app/match/lupin
+The Last of Us | 2023 | drama, action, sci-fi, horror | https://dramamatch.app/match/the-last-of-us
+Reacher | 2022 | action, crime, thriller | https://dramamatch.app/match/reacher
+Yellowjackets | 2021 | drama, thriller, mystery, horror | https://dramamatch.app/match/yellowjackets
+The Bear | 2022 | drama, comedy | https://dramamatch.app/match/the-bear
+American Horror Story | 2011 | horror, drama, thriller, anthology | https://dramamatch.app/match/american-horror-story
+Penny Dreadful | 2014 | horror, drama, fantasy, gothic | https://dramamatch.app/match/penny-dreadful
+The Vampire Diaries | 2009 | drama, fantasy, romance, horror | https://dramamatch.app/match/vampire-diaries
+Elite | 2018 | drama, thriller, mystery, teen | https://dramamatch.app/match/elite
+Pretty Little Liars | 2010 | mystery, thriller, drama, teen | https://dramamatch.app/match/pretty-little-liars
+Buffy the Vampire Slayer | 1997 | fantasy, action, drama, comedy | https://dramamatch.app/match/buffy-the-vampire-slayer
+Supernatural | 2005 | fantasy, horror, action, drama | https://dramamatch.app/match/supernatural
+Outer Banks | 2020 | action, adventure, drama, mystery | https://dramamatch.app/match/outer-banks
+One Tree Hill | 2003 | drama, romance, sports, teen | https://dramamatch.app/match/one-tree-hill
+Lucifer | 2016 | crime, comedy, fantasy, drama | https://dramamatch.app/match/lucifer
+Bodyguard | 2018 | thriller, drama, political | https://dramamatch.app/match/bodyguard
+Good Omens | 2019 | comedy, fantasy, drama | https://dramamatch.app/match/good-omens
+The Wire | 2002 | crime, drama | https://dramamatch.app/match/the-wire
+Mr. Robot | 2015 | thriller, drama, crime, sci-fi | https://dramamatch.app/match/mr-robot
+The 100 | 2014 | sci-fi, drama, action, adventure | https://dramamatch.app/match/the-100
+Squid Game | 2021 | thriller, drama, action | https://dramamatch.app/match/squid-game
+The Sopranos | 1999 | crime, drama | https://dramamatch.app/match/the-sopranos
+The Good Wife | 2009 | legal, drama, political | https://dramamatch.app/match/the-good-wife
+Designated Survivor | 2016 | thriller, drama, political | https://dramamatch.app/match/designated-survivor
+Never Have I Ever | 2020 | comedy, drama, coming-of-age, romance | https://dramamatch.app/match/never-have-i-ever
+Heartstopper | 2022 | romance, drama, coming-of-age | https://dramamatch.app/match/heartstopper
+The Americans | 2013 | thriller, spy, drama | https://dramamatch.app/match/the-americans
+The Night Manager | 2016 | thriller, spy, drama | https://dramamatch.app/match/the-night-manager
+The Great | 2020 | comedy, historical, drama | https://dramamatch.app/match/the-great
+Behind Her Eyes | 2021 | thriller, mystery, drama, psychological | https://dramamatch.app/match/behind-her-eyes
+The Gilded Age | 2022 | historical, drama | https://dramamatch.app/match/the-gilded-age
+Shōgun | 2024 | historical, drama, action | https://dramamatch.app/match/shogun
+Beef | 2023 | comedy, drama, thriller | https://dramamatch.app/match/beef
+Inventing Anna | 2022 | drama, crime, biographical | https://dramamatch.app/match/inventing-anna
+FROM | 2022 | horror, mystery, sci-fi, drama | https://dramamatch.app/match/from
+The Diplomat | 2023 | thriller, drama, political | https://dramamatch.app/match/the-diplomat
+Cedar Cove | 2013 | romance, drama, mystery | https://dramamatch.app/match/cedar-cove
+Everwood | 2002 | drama, romance, family | https://dramamatch.app/match/everwood
+7th Heaven | 1996 | drama, family, romance | https://dramamatch.app/match/7th-heaven
+Dawson's Creek | 1998 | romance, drama, teen | https://dramamatch.app/match/dawsons-creek
+Charmed | 1998 | fantasy, drama, romance, supernatural | https://dramamatch.app/match/charmed-1998
+Dr. Quinn, Medicine Woman | 1993 | drama, romance, western, historical | https://dramamatch.app/match/dr-quinn-medicine-woman
+The Fosters | 2013 | drama, family, romance | https://dramamatch.app/match/the-fosters
+Good Girls | 2018 | crime, drama, comedy | https://dramamatch.app/match/good-girls
+The Originals | 2013 | fantasy, drama, romance, supernatural | https://dramamatch.app/match/the-originals
+Private Practice | 2007 | drama, romance, medical | https://dramamatch.app/match/private-practice
+The O.C. | 2003 | drama, romance, teen | https://dramamatch.app/match/the-oc
+Nashville | 2012 | drama, romance, music | https://dramamatch.app/match/nashville
+Party of Five | 1994 | drama, family, romance | https://dramamatch.app/match/party-of-five-1994
+Chicago Fire | 2012 | drama, action, romance | https://dramamatch.app/match/chicago-fire
+9-1-1: Lone Star | 2020 | drama, action, procedural | https://dramamatch.app/match/911-lone-star
+The Equalizer | 2021 | crime, action, drama | https://dramamatch.app/match/the-equalizer-cbs
+NCIS: Origins | 2024 | crime, drama, procedural | https://dramamatch.app/match/ncis-origins
+NCIS: Sydney | 2023 | crime, drama, procedural | https://dramamatch.app/match/ncis-sydney
+Law & Order: Criminal Intent | 2001 | crime, drama, procedural, mystery | https://dramamatch.app/match/law-and-order-criminal-intent
+Boston Legal | 2004 | drama, comedy, legal | https://dramamatch.app/match/boston-legal
+The Good Fight | 2017 | drama, legal, thriller | https://dramamatch.app/match/the-good-fight
+Leverage | 2008 | crime, action, comedy, drama | https://dramamatch.app/match/leverage
+Leverage: Redemption | 2021 | crime, action, comedy, drama | https://dramamatch.app/match/leverage-redemption
+Matlock | 2024 | legal, drama, mystery | https://dramamatch.app/match/matlock-2024
+Quantico | 2015 | crime, thriller, drama, mystery | https://dramamatch.app/match/quantico
+Flashpoint | 2008 | crime, drama, action, procedural | https://dramamatch.app/match/flashpoint
+Agatha Christie's Poirot | 1989 | crime, mystery, drama | https://dramamatch.app/match/agatha-christies-poirot
+Republic of Doyle | 2010 | crime, comedy, drama | https://dramamatch.app/match/republic-of-doyle
+Graceland | 2013 | crime, drama, thriller | https://dramamatch.app/match/graceland
+Private Eyes | 2016 | crime, comedy, drama, mystery | https://dramamatch.app/match/private-eyes
+
+---
+
+## Western Movies (25 titles — search inputs for matching)
+
+Format: Title | Year | Genres | Match URL
+
+John Wick | 2014 | action, thriller, crime | https://dramamatch.app/match/john-wick
+The Notebook | 2004 | romance, drama | https://dramamatch.app/match/the-notebook
+Inception | 2010 | sci-fi, thriller, action | https://dramamatch.app/match/inception
+La La Land | 2016 | romance, musical, drama | https://dramamatch.app/match/la-la-land
+The Dark Knight | 2008 | action, thriller, drama, superhero | https://dramamatch.app/match/the-dark-knight
+Titanic | 1997 | romance, drama, historical | https://dramamatch.app/match/titanic
+Gone Girl | 2014 | thriller, mystery, drama | https://dramamatch.app/match/gone-girl
+The Devil Wears Prada | 2006 | comedy, drama, romance | https://dramamatch.app/match/the-devil-wears-prada
+Crazy Rich Asians | 2018 | romance, comedy, drama | https://dramamatch.app/match/crazy-rich-asians
+Knives Out | 2019 | mystery, comedy, thriller, crime | https://dramamatch.app/match/knives-out
+Get Out | 2017 | horror, thriller, mystery | https://dramamatch.app/match/get-out
+About Time | 2013 | romance, comedy, fantasy, drama | https://dramamatch.app/match/about-time
+The Proposal | 2009 | romance, comedy | https://dramamatch.app/match/the-proposal
+10 Things I Hate About You | 1999 | romance, comedy, teen | https://dramamatch.app/match/10-things-i-hate-about-you
+Mean Girls | 2004 | comedy, teen, drama | https://dramamatch.app/match/mean-girls
+The Holiday | 2006 | romance, comedy, drama | https://dramamatch.app/match/the-holiday
+Catch Me If You Can | 2002 | thriller, drama, crime, comedy | https://dramamatch.app/match/catch-me-if-you-can
+Pride & Prejudice | 2005 | romance, drama, historical | https://dramamatch.app/match/pride-and-prejudice-2005
+A Star Is Born | 2018 | romance, drama, musical | https://dramamatch.app/match/a-star-is-born
+You've Got Mail | 1998 | romance, comedy, drama | https://dramamatch.app/match/youve-got-mail
+Legally Blonde | 2001 | comedy, drama, romance | https://dramamatch.app/match/legally-blonde
+Parasite | 2019 | thriller, drama, dark-comedy, mystery | https://dramamatch.app/match/parasite
+Notting Hill | 1999 | romance, comedy, drama | https://dramamatch.app/match/notting-hill
+Hitch | 2005 | romance, comedy | https://dramamatch.app/match/hitch
+The Intern | 2015 | comedy, drama, romance | https://dramamatch.app/match/the-intern
+
+---
+
+## Mood Categories
+
+- **cry-it-out** — K-dramas with emotional, tearjerking stories | https://dramamatch.app/mood/cry-it-out
+- **feel-good** — Warm, uplifting K-dramas | https://dramamatch.app/mood/feel-good
+- **edge-of-seat** — Thriller and suspense K-dramas | https://dramamatch.app/mood/edge-of-seat
+- **laugh-out-loud** — Comedy K-dramas | https://dramamatch.app/mood/laugh-out-loud
+- **epic-romance** — Sweeping romantic K-dramas | https://dramamatch.app/mood/epic-romance
+- **dark-twisted** — Dark, psychological K-dramas | https://dramamatch.app/mood/dark-twisted
+
+---
+
+## About the Matching Algorithm
+
+DramaMatch uses weighted Jaccard similarity across 6 metadata dimensions:
+1. **Genres** — Primary content classification (weight: 0.25)
+2. **Themes** — Story themes (forbidden love, revenge, redemption, etc.) (weight: 0.25)
+3. **Tropes** — Narrative tropes (enemies-to-lovers, slow burn, found family, etc.) (weight: 0.20)
+4. **Tone** — Emotional register (dark, heartwarming, comedic, intense, etc.) (weight: 0.15)
+5. **Setting** — Time period and location (historical, modern, fantasy realm, etc.) (weight: 0.10)
+6. **Character Types** — Protagonist/antagonist archetypes (stoic lead, tsundere, villain lead, etc.) (weight: 0.05)
+
+---
+
+## Affiliate Disclosure
+
+DramaMatch links to streaming platforms using affiliate links. Amazon Associates Store ID: dramamatch20-20.

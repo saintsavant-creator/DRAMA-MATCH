@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Story — DramaMatch | Built by an Asian Drama Fan</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="alternate icon" href="/favicon.ico">
+    <meta name="description" content="DramaMatch was built by an Asian drama fan who couldn't find an app that matched Western shows to K-dramas, C-dramas, and J-dramas. Here's how it started.">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://dramamatch.app/about">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dramamatch.app/about">
+    <meta property="og:title" content="Our Story — DramaMatch">
+    <meta property="og:description" content="DramaMatch was built by an Asian drama fan who kept recommending K-dramas, C-dramas, and J-dramas to friends based on their Western taste. Then she built the app she wished existed.">
+    <meta property="og:site_name" content="DramaMatch">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet"></noscript>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg-deep: #0a0a0f;
+            --bg-card: #13131a;
+            --bg-accent: #1a1a24;
+            --coral: #e8614d;
+            --coral-glow: #ff7b6a;
+            --coral-dim: rgba(232,97,77,0.15);
+            --gold: #d4a853;
+            --gold-dim: rgba(212,168,83,0.15);
+            --text-primary: #f0ece4;
+            --text-secondary: #9a9690;
+            --text-dim: #5a5750;
+            --border: #2a2a35;
+        }
+
+        body {
+            font-family: 'Inter', 'DM Sans', sans-serif;
+            background: #060608;
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .accent {
+            background: linear-gradient(135deg, var(--coral) 0%, var(--coral-glow) 50%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ============================
+           HEADER / NAV BAR
+           ============================ */
+        .site-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.2rem 2rem;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            background: rgba(10,10,15,0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 50;
+        }
+
+        .site-logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .site-logo span {
+            background: linear-gradient(135deg, var(--coral), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .header-nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .header-nav a:hover,
+        .header-nav a.active {
+            color: var(--text-primary);
+        }
+
+        .header-nav .cta-link {
+            padding: 0.5rem 1.2rem;
+            background: linear-gradient(135deg, var(--coral), var(--coral-glow));
+            color: white !important;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .header-nav .cta-link:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(232,97,77,0.3);
+        }
+
+        /* Watchlist nav link */
+        .nav-watchlist-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            color: var(--coral) !important;
+            font-weight: 500;
+        }
+        .wl-nav-badge {
+            background: var(--coral);
+            color: #fff;
+            font-size: 0.6rem;
+            font-weight: 700;
+            min-width: 15px;
+            height: 15px;
+            border-radius: 8px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 0 3px;
+            line-height: 1;
+        }
+        .wl-nav-badge.visible { display: inline-flex; }
+
+        /* ============================
+           HERO
+           ============================ */
+        .about-hero {
+            padding: 5rem 2rem 3rem;
+            text-align: center;
+            background:
+                radial-gradient(ellipse 70% 50% at 50% 0%, rgba(232,97,77,0.07) 0%, transparent 60%),
+                var(--bg-deep);
+        }
+
+        .about-hero .tag {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            max-width: 700px;
+            margin: 0 auto 1rem;
+        }
+
+        .about-hero .subtitle {
+            color: var(--text-secondary);
+            font-size: clamp(1rem, 2vw, 1.15rem);
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        /* ============================
+           STORY CONTENT
+           ============================ */
+        .story-container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 3rem 2rem 6rem;
+        }
+
+        .story-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .story-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--coral), var(--gold));
+        }
+
+        .story-quote {
+            font-size: 4rem;
+            line-height: 1;
+            color: var(--coral-dim);
+            font-family: Georgia, serif;
+            margin-bottom: -1rem;
+            padding-left: 0.2rem;
+        }
+
+        .story-body {
+            font-size: 1.1rem;
+            line-height: 1.85;
+            color: var(--text-primary);
+        }
+
+        .story-body p {
+            margin-bottom: 1.6rem;
+        }
+
+        .story-body p:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .story-body strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .story-body em {
+            color: var(--coral-glow);
+            font-style: normal;
+        }
+
+        /* Author attribution */
+        .story-author {
+            margin-top: 2.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--coral), var(--gold));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+
+        .author-info .name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .author-info .role {
+            color: var(--text-dim);
+            font-size: 0.85rem;
+        }
+
+        /* ============================
+           EXTRA CONTEXT SECTION
+           ============================ */
+        .context-section {
+            margin-top: 3rem;
+            display: grid;
+            gap: 1rem;
+        }
+
+        .context-item {
+            background: var(--bg-accent);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.5rem;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .context-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            margin-top: 0.1rem;
+        }
+
+        .context-text h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .context-text p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* ============================
+           CTA SECTION
+           ============================ */
+        .about-cta {
+            margin-top: 3rem;
+            text-align: center;
+            padding: 2.5rem;
+            background: var(--bg-accent);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+        }
+
+        .about-cta h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.6rem;
+        }
+
+        .about-cta p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-cta .cta-button {
+            display: inline-block;
+            padding: 0.85rem 2.2rem;
+            background: linear-gradient(135deg, var(--coral), var(--coral-glow));
+            color: white;
+            border-radius: 12px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .about-cta .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(232,97,77,0.3);
+        }
+
+        /* ============================
+           FOOTER
+           ============================ */
+        footer {
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            color: var(--text-dim);
+            font-size: 0.8rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        footer a:hover {
+            color: var(--text-primary);
+        }
+
+        footer .footer-links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+            .site-header {
+                padding: 0.85rem 1.25rem;
+            }
+
+            .header-nav {
+                gap: 0.85rem;
+            }
+
+            .header-nav a:not(.cta-link):not(.nav-watchlist-link) {
+                display: none;
+            }
+
+            .header-nav .cta-link {
+                padding: 0.45rem 1rem;
+                font-size: 0.82rem;
+            }
+
+            .about-hero {
+                padding: 3rem 1.25rem 2rem;
+            }
+
+            .story-container {
+                padding: 1.5rem 1.25rem 3rem;
+            }
+
+            .story-card {
+                padding: 1.75rem 1.25rem;
+                border-radius: 16px;
+            }
+
+            .story-body {
+                font-size: 1rem;
+                line-height: 1.8;
+            }
+
+            .story-quote {
+                font-size: 3rem;
+            }
+
+            .context-item {
+                padding: 1.25rem;
+                gap: 0.85rem;
+            }
+
+            .context-icon {
+                font-size: 1.3rem;
+            }
+
+            .about-cta {
+                padding: 1.75rem 1.25rem;
+                border-radius: 16px;
+            }
+
+            .about-cta h2 {
+                font-size: 1.3rem;
+            }
+
+            .about-cta .cta-button {
+                display: block;
+                text-align: center;
+                padding: 0.85rem 1.5rem;
+            }
+
+            footer {
+                padding: 1.5rem 1.25rem;
+            }
+        }
+    </style>
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1686999645661477');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1686999645661477&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <a href="/" class="site-logo">Drama<span>Match</span></a>
+        <nav class="header-nav">
+            <a href="/" >Home</a>
+            <a href="/actors">Actor Dives</a>
+            <a href="/about" class="active">Our Story</a>
+            <a href="/watchlist" class="nav-watchlist-link">♡ Watchlist <span class="wl-nav-badge" id="nav-wl-badge"></span></a>
+            <a href="/" class="cta-link">Find a Match</a>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="about-hero">
+        <div class="tag">🎬 Our Story</div>
+        <h1>built by an <span class="accent">Asian drama obsessive</span> who couldn't find the app she wanted</h1>
+        <p class="subtitle">so obviously, she built it herself.</p>
+    </section>
+
+    <!-- STORY -->
+    <div class="story-container">
+        <div class="story-card">
+            <div class="story-quote">"</div>
+            <div class="story-body">
+                <p>
+                    K-dramas took over my life about two years ago. I went from casual viewer to the friend who corners people at parties like "okay but have you SEEN <em>Signal</em> though??" I was deep in it.
+                </p>
+                <p>
+                    I started <strong>mentally cross-referencing every Western show with K-dramas in my head.</strong> Friend loves <em>Suits</em>? She needs <em>Vincenzo</em> immediately. Obsessed with <em>Breaking Bad</em>? <em>Stranger</em> or <em>Connection</em> — no question. The vibes, the tropes, the emotional beats just... mapped.
+                </p>
+                <p>
+                    So I started searching: <strong>was there an app that did this?</strong> Something that took a Western show and found you the K-drama, C-drama, or J-drama equivalent. I googled everything. I asked every Asian drama community I could find.
+                </p>
+                <p>
+                    Nothing. Every recommendation site was generic "top 10" lists with no connection to what you already love. Totally useless if you're trying to convert a friend.
+                </p>
+                <p>
+                    <strong>So I built the app I wanted to exist.</strong> That's DramaMatch.
+                </p>
+            </div>
+
+            <div class="story-author">
+                <div class="author-avatar">🎭</div>
+                <div class="author-info">
+                    <div class="name">The DramaMatch Founder</div>
+                    <div class="role">Asian drama convert &amp; builder</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTEXT CARDS -->
+        <div class="context-section">
+            <div class="context-item">
+                <div class="context-icon">🧠</div>
+                <div class="context-text">
+                    <h3>how the matching actually works</h3>
+                    <p>every show is tagged across 6 dimensions: genres, themes, tropes, tone, cast, and streaming. the engine finds shows that share actual story DNA — so "enemies-to-lovers slow burn office romance" finds its Korean counterpart, not just something vaguely similar.</p>
+                </div>
+            </div>
+            <div class="context-item">
+                <div class="context-icon">📚</div>
+                <div class="context-text">
+                    <h3>1,100+ titles and counting</h3>
+                    <p>K-dramas, C-dramas, J-dramas, Korean movies, and Western shows & movies. Every title hand-verified with metadata that makes matches actually mean something.</p>
+                </div>
+            </div>
+            <div class="context-item">
+                <div class="context-icon">🆓</div>
+                <div class="context-text">
+                    <h3>free, no sign-up, no nonsense</h3>
+                    <p>search any show, get instant matches. no account, no paywall, no pop-ups asking for your email before you can see anything. just find your next obsession and go watch it.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="about-cta">
+            <h2>ready to fall down the Asian drama rabbit hole?</h2>
+            <p>type any show you love. I'll find the K-drama, C-drama, or J-drama that was made for you.</p>
+            <a href="/" class="cta-button">find my match →</a>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>DramaMatch &mdash; made by an Asian drama fan who just wants everyone to watch Signal 🎬</p>
+        <div class="footer-links">
+            <a href="/">Home</a>
+            <a href="/about">Our Story</a>
+            <a href="https://polsia.com">Polsia</a>
+        </div>
+    </footer>
+
+<script src="/track.js" defer></script>
+<script>
+(function() {
+    var count = 0;
+    try { count = JSON.parse(localStorage.getItem('dm_watchlist') || '[]').length; } catch(e) {}
+    var badge = document.getElementById('nav-wl-badge');
+    if (badge && count > 0) {
+        badge.textContent = count;
+        badge.classList.add('visible');
+    }
+})();
+</script>
+</body>
+</html>

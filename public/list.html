@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shared Watchlist — DramaMatch</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="alternate icon" href="/favicon.ico">
+    <meta name="description" content="A shared DramaMatch watchlist — browse and import titles.">
+    <meta name="robots" content="noindex, nofollow">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet"></noscript>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-deep: #0a0a0f;
+            --bg-card: #13131a;
+            --bg-accent: #1a1a24;
+            --coral: #e8614d;
+            --coral-glow: #ff7b6a;
+            --coral-dim: rgba(232,97,77,0.15);
+            --gold: #d4a853;
+            --green: #4ade80;
+            --text-primary: #f0ece4;
+            --text-secondary: #9a9690;
+            --text-dim: #5a5750;
+            --border: #2a2a35;
+        }
+        body { font-family: 'Inter', 'DM Sans', sans-serif; background: var(--bg-deep); color: var(--text-primary); line-height: 1.6; min-height: 100vh; }
+
+        /* NAV */
+        .site-nav {
+            position: sticky; top: 0; z-index: 100;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 14px 24px;
+            background: rgba(10,10,15,0.92);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
+        .nav-logo { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1rem; color: var(--text-primary); text-decoration: none; }
+        .nav-logo span { color: var(--coral); }
+        .nav-links { display: flex; align-items: center; gap: 20px; font-size: 0.875rem; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--text-primary); }
+        .nav-watchlist { display: inline-flex; align-items: center; gap: 0.3rem; color: var(--coral) !important; }
+        .wl-nav-badge {
+            background: var(--coral); color: #fff; font-size: 0.6rem; font-weight: 700;
+            min-width: 15px; height: 15px; border-radius: 8px; display: none;
+            align-items: center; justify-content: center; padding: 0 3px; line-height: 1;
+        }
+        .wl-nav-badge.visible { display: inline-flex; }
+
+        /* PAGE HEADER */
+        .page-header {
+            padding: 2.5rem 1.5rem 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .shared-badge {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            padding: 0.3rem 0.75rem; border-radius: 20px;
+            background: rgba(212,168,83,0.1); border: 1px solid rgba(212,168,83,0.25);
+            color: var(--gold); font-size: 0.78rem; font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+        .page-header h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.5rem, 4vw, 2.2rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.35rem;
+        }
+        .page-header h1 span {
+            background: linear-gradient(135deg, var(--coral) 0%, var(--coral-glow) 50%, var(--gold) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .page-header-sub { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.25rem; }
+        .header-actions { display: flex; gap: 0.65rem; flex-wrap: wrap; }
+
+        /* ACTION BUTTONS */
+        .btn-import {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            padding: 0.65rem 1.3rem;
+            background: linear-gradient(135deg, var(--coral) 0%, #d44a3a 100%);
+            color: #fff; border: none; border-radius: 9px;
+            font-family: 'DM Sans', sans-serif; font-size: 0.88rem; font-weight: 600;
+            cursor: pointer; transition: opacity 0.2s, transform 0.15s;
+        }
+        .btn-import:hover { opacity: 0.9; transform: translateY(-1px); }
+        .btn-import:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+        .btn-copy {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            padding: 0.65rem 1.2rem;
+            background: transparent; color: var(--text-secondary);
+            border: 1px solid var(--border); border-radius: 9px;
+            font-family: 'DM Sans', sans-serif; font-size: 0.88rem; font-weight: 500;
+            cursor: pointer; transition: all 0.2s;
+        }
+        .btn-copy:hover { border-color: var(--coral); color: var(--coral); }
+
+        /* STATS */
+        .stats-strip { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 0.75rem; }
+        .stat-chip {
+            display: flex; align-items: center; gap: 0.35rem;
+            padding: 0.3rem 0.75rem; background: var(--bg-card);
+            border: 1px solid var(--border); border-radius: 20px;
+            font-size: 0.78rem; color: var(--text-secondary);
+        }
+        .stat-chip strong { color: var(--text-primary); font-weight: 600; }
+
+        /* SECTION HEADERS */
+        .list-section { max-width: 900px; margin: 0 auto; padding: 0 1.5rem 4rem; }
+        .section-header {
+            display: flex; align-items: center; gap: 0.65rem;
+            padding: 1.25rem 0 0.85rem;
+        }
+        .section-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.05rem; font-weight: 700; }
+        .section-count {
+            font-size: 0.75rem; color: var(--text-dim);
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 8px; padding: 0.1rem 0.45rem;
+        }
+
+        /* CARDS — same style as watchlist */
+        .wl-grid { display: flex; flex-direction: column; gap: 1rem; }
+        .wl-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 14px; overflow: hidden;
+        }
+        .wl-card.status-watched { border-left: 3px solid var(--green); }
+        .wl-card.status-want_to_watch { border-left: 3px solid var(--coral); }
+        .wl-card-inner { display: flex; }
+        .wl-poster { width: 100px; flex-shrink: 0; background: var(--bg-accent); }
+        .wl-poster img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .wl-poster-placeholder {
+            width: 100%; min-height: 120px;
+            background: linear-gradient(135deg, var(--bg-accent) 0%, rgba(232,97,77,0.05) 100%);
+        }
+        .wl-body { flex: 1; padding: 1rem 1.1rem 0.9rem; min-width: 0; }
+        .wl-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.7rem; margin-bottom: 0.3rem; }
+        .wl-title { font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem; font-weight: 700; line-height: 1.3; }
+        .wl-meta { font-size: 0.75rem; color: var(--text-dim); margin-bottom: 0.45rem; }
+        .wl-status-badge {
+            display: inline-flex; align-items: center; gap: 0.2rem;
+            padding: 0.15rem 0.5rem; border-radius: 5px; font-size: 0.68rem; font-weight: 700; flex-shrink: 0;
+        }
+        .wl-status-badge.watched { background: rgba(74,222,128,0.1); border: 1px solid rgba(74,222,128,0.25); color: var(--green); }
+        .wl-status-badge.want_to_watch { background: var(--coral-dim); border: 1px solid rgba(232,97,77,0.3); color: var(--coral); }
+        .wl-reasoning { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 0.55rem; }
+        .wl-tags { display: flex; flex-wrap: wrap; gap: 0.25rem; margin-bottom: 0.55rem; }
+        .tag-genre { background: rgba(96,165,250,0.1); border: 1px solid rgba(96,165,250,0.2); color: #60a5fa; font-size: 0.67rem; padding: 0.1rem 0.4rem; border-radius: 4px; }
+        .wl-streaming { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-bottom: 0.6rem; }
+        .streaming-badge {
+            display: inline-flex; align-items: center; gap: 0.25rem;
+            padding: 0.2rem 0.55rem; border-radius: 5px; font-size: 0.7rem; font-weight: 600; text-decoration: none; transition: opacity 0.2s;
+        }
+        .streaming-badge:hover { opacity: 0.8; }
+        .streaming-badge-netflix      { background: rgba(229,9,20,0.15);    border: 1px solid rgba(229,9,20,0.3);    color: #e50914; }
+        .streaming-badge-viki         { background: rgba(29,180,147,0.12);  border: 1px solid rgba(29,180,147,0.3);  color: #1db493; }
+        .streaming-badge-amazon_prime { background: rgba(0,168,225,0.12);   border: 1px solid rgba(0,168,225,0.3);   color: #00a8e1; }
+        .streaming-badge-disney_plus  { background: rgba(17,60,219,0.12);   border: 1px solid rgba(17,60,219,0.3);   color: #113cdb; }
+        .streaming-badge-hulu         { background: rgba(28,231,131,0.12);  border: 1px solid rgba(28,231,131,0.3);  color: #1ce783; }
+        .streaming-badge-apple_tv     { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15);color: #f5f5f7; }
+        .streaming-badge-kocowa       { background: rgba(255,87,34,0.12);   border: 1px solid rgba(255,87,34,0.3);   color: #ff5722; }
+        .streaming-badge-crunchyroll  { background: rgba(249,115,22,0.12);  border: 1px solid rgba(249,115,22,0.3);  color: #f97316; }
+
+        /* CARD CTA */
+        .wl-card-cta { display: flex; gap: 0.5rem; padding-top: 0.55rem; border-top: 1px solid var(--border); flex-wrap: wrap; }
+        .cta-link { color: var(--text-dim); text-decoration: none; font-size: 0.75rem; }
+        .cta-link:hover { color: var(--coral); }
+
+        /* IMPORT SUCCESS TOAST */
+        .toast {
+            position: fixed; bottom: 1.5rem; left: 50%;
+            transform: translateX(-50%) translateY(80px);
+            background: #1e1e2a; border: 1px solid rgba(74,222,128,0.3);
+            border-radius: 12px; padding: 0.85rem 1.4rem;
+            display: flex; align-items: center; gap: 0.6rem;
+            color: var(--text-primary); font-size: 0.88rem; font-weight: 500;
+            z-index: 9999;
+            transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4); max-width: calc(100vw - 2rem);
+        }
+        .toast.visible { transform: translateX(-50%) translateY(0); }
+
+        /* ERROR/LOADING */
+        .centered { text-align: center; padding: 5rem 2rem; }
+        .centered h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; margin-bottom: 0.75rem; }
+        .centered p { color: var(--text-secondary); margin-bottom: 1.5rem; }
+        .btn-back { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.65rem 1.3rem; background: linear-gradient(135deg, var(--coral) 0%, #d44a3a 100%); color: #fff; text-decoration: none; border-radius: 9px; font-weight: 600; font-size: 0.9rem; }
+
+        footer { padding: 2rem; text-align: center; border-top: 1px solid var(--border); color: var(--text-dim); font-size: 0.8rem; }
+        footer a { color: var(--text-dim); text-decoration: none; }
+        footer a:hover { color: var(--text-secondary); }
+
+        @media (max-width: 600px) {
+            .site-nav { padding: 12px 16px; }
+            .nav-links { gap: 12px; font-size: 0.8rem; }
+            .nav-links a.hide-mobile { display: none; }
+            .page-header { padding: 1.5rem 1rem 1rem; }
+            .list-section { padding: 0 1rem 3rem; }
+            .wl-poster { width: 80px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="site-nav">
+        <a href="/" class="nav-logo">Drama<span>Match</span></a>
+        <div class="nav-links">
+            <a href="/watchlist" class="nav-watchlist">♥ My List <span class="wl-nav-badge" id="nav-wl-badge"></span></a>
+            <a href="/popular" class="hide-mobile">⚡ Popular</a>
+            <a href="/">Find a Match</a>
+        </div>
+    </nav>
+
+    <div id="app-root">
+        <div class="centered">
+            <div style="font-size:2.5rem;margin-bottom:1rem;">⏳</div>
+            <h2>Loading list…</h2>
+            <p>Fetching shared watchlist…</p>
+        </div>
+    </div>
+
+    <footer>
+        <p><a href="/">← Find a Match</a> &nbsp;·&nbsp; <a href="/watchlist">My Watchlist</a> &nbsp;·&nbsp; <a href="/popular">⚡ Popular Titles</a></p>
+    </footer>
+
+    <!-- Import Toast -->
+    <div class="toast" id="import-toast">
+        <span>✅</span>
+        <span id="toast-msg">Imported to your list!</span>
+        <a href="/watchlist" style="color:var(--coral);font-size:0.8rem;font-weight:600;text-decoration:none;margin-left:0.25rem;">View →</a>
+    </div>
+
+<script>
+(function() {
+    var WL_KEY = 'dm_watchlist';
+    var sharedData = null;
+    var listId = null;
+
+    function wlLoad() {
+        try { return JSON.parse(localStorage.getItem(WL_KEY) || '[]'); } catch(e) { return []; }
+    }
+    function wlSave(list) {
+        try { localStorage.setItem(WL_KEY, JSON.stringify(list)); } catch(e) {}
+    }
+    function updateNavBadge() {
+        var count = wlLoad().length;
+        var badge = document.getElementById('nav-wl-badge');
+        if (!badge) return;
+        badge.textContent = count > 0 ? count : '';
+        if (count > 0) badge.classList.add('visible');
+        else badge.classList.remove('visible');
+    }
+    function escHtml(str) {
+        return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    // Get list ID from URL path /list/abc123
+    function getListId() {
+        var parts = window.location.pathname.split('/');
+        return parts[parts.length - 1] || parts[parts.length - 2] || null;
+    }
+
+    var platformMeta = {
+        amazon_prime: { name: 'Prime Video', css: 'amazon_prime' },
+        netflix:      { name: 'Netflix',     css: 'netflix' },
+        crunchyroll:  { name: 'Crunchyroll', css: 'crunchyroll' },
+        viki:         { name: 'Viki',        css: 'viki' },
+        kocowa:       { name: 'Kocowa',      css: 'kocowa' },
+        disney_plus:  { name: 'Disney+',     css: 'disney_plus' },
+        hulu:         { name: 'Hulu',        css: 'hulu' },
+        apple_tv:     { name: 'Apple TV+',   css: 'apple_tv' }
+    };
+
+    function buildStreamingHtml(streaming, showId) {
+        if (!streaming) return '';
+        var order = ['amazon_prime','netflix','crunchyroll','viki','kocowa','disney_plus','hulu','apple_tv'];
+        return Object.keys(streaming)
+            .filter(function(s) { return streaming[s]; })
+            .sort(function(a, b) { var ai = order.indexOf(a); var bi = order.indexOf(b); return (ai===-1?99:ai)-(bi===-1?99:bi); })
+            .map(function(s) {
+                var meta = platformMeta[s] || { name: s, css: 'netflix' };
+                var url = '/api/affiliate/go/' + s + '/' + encodeURIComponent(showId);
+                return '<a href="' + url + '" target="_blank" rel="noopener" class="streaming-badge streaming-badge-' + meta.css + '">▶ ' + meta.name + '</a>';
+            }).join('');
+    }
+
+    function buildCard(item) {
+        var status = item.status || 'want_to_watch';
+        var typeLabel = {
+            kmovie: 'K-Movie', cdrama: 'C-Drama', jdrama: 'J-Drama',
+            anime: 'Anime', western: 'Western Show', 'western-movie': 'Western Movie',
+            'anime-movie': 'Anime Film', jmovie: 'J-Movie'
+        }[item.type] || 'K-Drama';
+
+        var metaParts = [];
+        if (item.year) metaParts.push(item.year);
+        if ((item.type === 'kmovie' || item.type === 'western-movie') && item.runtime) metaParts.push(item.runtime + ' min');
+        else if (item.episodes) metaParts.push(item.episodes + ' ep');
+        metaParts.push(typeLabel);
+
+        var reasoning = (item.reasoning || '').replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+        var posterHtml = item.posterUrl
+            ? '<img src="' + escHtml(item.posterUrl) + '" alt="' + escHtml(item.title) + '" loading="lazy" onerror="this.parentElement.innerHTML=\'<div class=wl-poster-placeholder></div>\'">'
+            : '<div class="wl-poster-placeholder"></div>';
+
+        var statusBadge = status === 'watched'
+            ? '<span class="wl-status-badge watched">✓ Watched</span>'
+            : '<span class="wl-status-badge want_to_watch">📋 Want to Watch</span>';
+
+        var genreHtml = (item.genres || []).slice(0,4).map(function(g) {
+            return '<span class="tag-genre">' + escHtml(g) + '</span>';
+        }).join('');
+
+        var streamingHtml = buildStreamingHtml(item.streaming, item.id);
+
+        var matchLink = '/match/' + encodeURIComponent(item.id);
+
+        return '<div class="wl-card status-' + status + '">'
+            + '<div class="wl-card-inner">'
+            + '<div class="wl-poster">' + posterHtml + '</div>'
+            + '<div class="wl-body">'
+            + '<div class="wl-card-top">'
+            + '<div><div class="wl-title">' + escHtml(item.title) + '</div>'
+            + '<div class="wl-meta">' + escHtml(metaParts.join(' · ')) + '</div></div>'
+            + statusBadge
+            + '</div>'
+            + (reasoning ? '<div class="wl-reasoning">' + reasoning + '</div>' : '')
+            + (genreHtml ? '<div class="wl-tags">' + genreHtml + '</div>' : '')
+            + (streamingHtml ? '<div class="wl-streaming">' + streamingHtml + '</div>' : '')
+            + '<div class="wl-card-cta">'
+            + '<a href="' + matchLink + '" class="cta-link">🔍 Find matches for this →</a>'
+            + '</div>'
+            + '</div>'
+            + '</div>'
+            + '</div>';
+    }
+
+    function buildSection(title, items, statusFilter) {
+        var filtered = items.filter(function(i) { return (i.status || 'want_to_watch') === statusFilter; });
+        if (!filtered.length) return '';
+        var icon = statusFilter === 'watched' ? '✓' : '📋';
+        return '<div class="section-header">'
+            + '<div class="section-title">' + icon + ' ' + escHtml(title) + '</div>'
+            + '<div class="section-count">' + filtered.length + '</div>'
+            + '</div>'
+            + '<div class="wl-grid">' + filtered.map(buildCard).join('') + '</div>';
+    }
+
+    window.importList = function() {
+        if (!sharedData) return;
+        var existing = wlLoad();
+        var imported = 0;
+        var items = sharedData.items || [];
+        items.forEach(function(item) {
+            var alreadyHas = existing.some(function(x) { return x.id === item.id; });
+            if (!alreadyHas) {
+                existing.push(Object.assign({}, item, { savedAt: new Date().toISOString() }));
+                imported++;
+            }
+        });
+        wlSave(existing);
+        updateNavBadge();
+
+        // Show toast
+        var toast = document.getElementById('import-toast');
+        var msgEl = document.getElementById('toast-msg');
+        if (msgEl) msgEl.textContent = imported + ' title' + (imported !== 1 ? 's' : '') + ' added to your list!';
+        if (toast) {
+            toast.classList.add('visible');
+            setTimeout(function() { toast.classList.remove('visible'); }, 5000);
+        }
+
+        // Update import button
+        var btn = document.getElementById('import-btn');
+        if (btn) {
+            btn.textContent = '✅ Imported!';
+            btn.disabled = true;
+        }
+    };
+
+    window.copyLink = function() {
+        var url = window.location.href;
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(url).then(function() {
+                var btn = document.getElementById('copy-btn');
+                if (btn) { var orig = btn.textContent; btn.textContent = '✅ Copied!'; setTimeout(function() { btn.textContent = orig; }, 2000); }
+            });
+        }
+    };
+
+    function renderPage(data) {
+        sharedData = data;
+        var items = data.items || [];
+        var title = data.listTitle || 'Shared Watchlist';
+        var createdAt = '';
+        if (data.createdAt) {
+            try {
+                var d = new Date(data.createdAt);
+                createdAt = d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+            } catch(e) {}
+        }
+
+        var watchedCount = items.filter(function(i) { return (i.status || 'want_to_watch') === 'watched'; }).length;
+        var wantCount = items.filter(function(i) { return (i.status || 'want_to_watch') === 'want_to_watch'; }).length;
+
+        var statsHtml = '';
+        statsHtml += '<div class="stat-chip">🎬 <strong>' + items.length + '</strong> title' + (items.length !== 1 ? 's' : '') + '</div>';
+        if (watchedCount) statsHtml += '<div class="stat-chip">✓ <strong>' + watchedCount + '</strong> watched</div>';
+        if (wantCount) statsHtml += '<div class="stat-chip">📋 <strong>' + wantCount + '</strong> want to watch</div>';
+
+        var headerHtml = '<div class="page-header">'
+            + '<div class="shared-badge">🔗 Shared List</div>'
+            + '<h1><span>' + escHtml(title) + '</span></h1>'
+            + (createdAt ? '<p class="page-header-sub">Shared on ' + escHtml(createdAt) + '</p>' : '')
+            + '<div class="header-actions">'
+            + '<button class="btn-import" id="import-btn" onclick="importList()">📥 Import to My List</button>'
+            + '<button class="btn-copy" id="copy-btn" onclick="copyLink()">🔗 Copy Link</button>'
+            + '</div>'
+            + '<div class="stats-strip">' + statsHtml + '</div>'
+            + '</div>';
+
+        var sectionsHtml = '<div class="list-section">';
+        sectionsHtml += buildSection('Want to Watch', items, 'want_to_watch');
+        sectionsHtml += buildSection('Watched', items, 'watched');
+        if (!wantCount && !watchedCount) {
+            sectionsHtml += '<p style="text-align:center;color:var(--text-dim);padding:3rem;">This list is empty.</p>';
+        }
+        sectionsHtml += '</div>';
+
+        document.getElementById('app-root').innerHTML = headerHtml + sectionsHtml;
+    }
+
+    function showError(msg) {
+        document.getElementById('app-root').innerHTML = '<div class="centered">'
+            + '<div style="font-size:2.5rem;margin-bottom:1rem;">🔍</div>'
+            + '<h2>List not found</h2>'
+            + '<p>' + escHtml(msg || 'This shared list could not be found or may have expired.') + '</p>'
+            + '<a href="/" class="btn-back">← Find a Match</a>'
+            + '</div>';
+    }
+
+    // Init
+    listId = getListId();
+    updateNavBadge();
+
+    if (!listId || !/^[a-z0-9]{8,16}$/.test(listId)) {
+        showError('Invalid list URL.');
+    } else {
+        fetch('/api/shared-list/' + listId)
+            .then(function(r) { return r.json(); })
+            .then(function(result) {
+                if (result.success && result.data) {
+                    var data = typeof result.data === 'string' ? JSON.parse(result.data) : result.data;
+                    data.createdAt = result.createdAt;
+                    renderPage(data);
+                } else {
+                    showError(result.error || 'List not found.');
+                }
+            })
+            .catch(function() {
+                showError('Could not load list. Please check your connection.');
+            });
+    }
+})();
+</script>
+</body>
+</html>

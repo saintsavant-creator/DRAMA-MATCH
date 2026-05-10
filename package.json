@@ -1,1 +1,23 @@
-{"name": "drama-match","version": "1.0.0","description": "DramaMatch - A mood-based K-drama and C-drama recommendation app","main": "server/index.js","scripts": {"start": "node server/index.js","dev": "concurrently \"npm run server\" \"npm run client\"","server": "nodemon server/index.js","client": "cd client && npm start","build": "cd client && npm run build","test": "jest"},"dependencies": {"express": "^4.18.2","cors": "^2.8.5","dotenv": "^16.0.3","mongoose": "^7.0.0","bcryptjs": "^2.4.3","jsonwebtoken": "^9.0.0","axios": "^1.3.0"},"devDependencies": {"nodemon": "^2.0.20","concurrently": "^7.6.0","jest": "^29.5.0"}}
+{
+  "name": "express-postgres-starter",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "build": "npm run migrate && npm run export:catalog && npm run export:analytics && npm run export:pageviews && (npm run gen:og || echo 'OG image generation skipped - will generate on first request')",
+    "export:catalog": "node scripts/export-catalog.js",
+    "export:analytics": "node scripts/export-analytics.js",
+    "export:pageviews": "node scripts/export-pageviews.js",
+    "migrate": "node migrate.js",
+    "gen:og": "node scripts/generate-og-image.js",
+    "gen:ads": "node scripts/generate-tiktok-ads.js"
+  },
+  "dependencies": {
+    "compression": "^1.7.4",
+    "express": "^4.18.2",
+    "openai": "^4.77.0",
+    "pg": "^8.11.3",
+    "sharp": "^0.33.4"
+  }
+}
