@@ -253,7 +253,7 @@ The app has two Polsia-specific behaviors you may want to clean up:
 
 1. **Analytics tracking snippet** (lines ~3641, ~3672 in `server.js`): Injects a `<script>` tag if `POLSIA_ANALYTICS_SLUG` is set. Just don't set that env var — it degrades to empty string automatically.
 
-2. **Redirect rule** (lines ~58-61 in `server.js`): Redirects `dramamatch.polsia.app` → `dramamatch.app`. Harmless to leave; it only fires if the `polsia.app` subdomain is hit.
+2. **Redirect rule** (lines ~58-61 in `server.js`): Redirects `dramamatch.app` → `dramamatch.app`. Harmless to leave; it only fires if the `polsia.app` subdomain is hit.
 
 No code changes required. Both degrade gracefully with no env var set.
 

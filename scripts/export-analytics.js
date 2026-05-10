@@ -128,7 +128,7 @@ async function main() {
 
   const sizeMB = (fs.statSync(OUTPUT_PATH).size / 1024 / 1024).toFixed(2);
   console.log(`\n✓ Exported ${grandTotal.toLocaleString()} total rows → public/dramamatch_data_export.sql (${sizeMB} MB)`);
-  console.log(`\nDownloadable at: https://dramamatch.polsia.app/dramamatch_data_export.sql`);
+  console.log(`\nDownloadable at: https://dramamatch.app/dramamatch_data_export.sql`);
 }
 
 main().catch(err => {

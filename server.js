@@ -55,10 +55,10 @@ app.get('/health', (req, res) => {
   res.json({ status: 'healthy' });
 });
 
-// 301 redirect: dramamatch.polsia.app → dramamatch.app
+// 301 redirect: dramamatch.app → dramamatch.app
 // Preserves full path+query so bookmarks and shared links land correctly.
 app.use((req, res, next) => {
-  if (req.hostname === 'dramamatch.polsia.app' || req.hostname === 'www.dramamatch.app') {
+  if (req.hostname === 'dramamatch.app' || req.hostname === 'www.dramamatch.app') {
     const target = `https://dramamatch.app${req.path}${req.query && Object.keys(req.query).length ? '?' + new URLSearchParams(req.query).toString() : ''}`;
     return res.redirect(301, target);
   }

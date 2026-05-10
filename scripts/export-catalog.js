@@ -43,4 +43,4 @@ Object.entries(output.by_type)
   .sort((a, b) => b[1] - a[1])
   .forEach(([type, count]) => console.log(`  ${type}: ${count}`));
 console.log(`\nFile size: ${(fs.statSync(outputPath).size / 1024 / 1024).toFixed(2)} MB`);
-console.log(`\nDownloadable at: https://dramamatch.polsia.app/catalog-export.json`);
+console.log(`\nDownloadable at: https://dramamatch.app/catalog-export.json`);
