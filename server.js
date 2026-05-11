@@ -55,11 +55,6 @@ app.get('/health', (req, res) => {
   res.json({ status: 'healthy' });
 });
 
-// 
- 
-git push
- next();
-});
 
 // ============================================
 // AI DISCOVERY — Dynamic /llms-full.txt (auto-generated from live catalog)
